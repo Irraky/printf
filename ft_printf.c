@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/20 16:29:31 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/20 21:02:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,12 @@ static void		ft_init_env(t_env *env)
 	ft_bzero(&env->buffer, BUFF_SIZE);
 }
 
-static void		destroy_env(t_env *env)
+/*static void		destroy_env(t_env *env)
 {
 	ft_memdel((void **)&(env->buffer));
-	ft_memdel((void **)&(env->str));
 	ft_memdel((void **)&(env->flags));
-}
+}*/
 
-static void		ft_get_flags(t_env *env, const char *format)
-{
-	int		i;
-	char	*conversions;
-
-	i = 0;
-	conversions = "SspDdiOoUuXxCcEeFfGgAan";
-	
-}
 int				ft_printf(const char *format, ...)
 {
 	t_env		env;
@@ -64,21 +54,23 @@ int				ft_printf(const char *format, ...)
 	i = 0;
 	ft_init_env(&env);
 	va_start(args, format);
+	printf("%s", format);
 	while (format[++env.indexstr])
 	{
-		while (format[env.indexstr] != '%' && format)
+		while (format[env.indexstr] != '%' && format[env.indexstr])
 			++env.indexstr;
-		ft_putinit(&env, (char *)&format[i], env.indexstr - i - 1);
-		ft_get_flags(&env, format);
-		i = env.indexstr + ft_strlen(env.flags) + 1;
-		ft_putinit(&env, tab[env.conversion], -1);  //faire tableau pointeur sur fonction
+		ft_putinit(&env, (char *)&format[i], env.indexstr - i);
+		//get_data(&env, format);
+		i = env.indexstr; //qjouter taille argument
+	//	ft_putinit(&env, tab[env.conversion], -1);  //faire tableau pointeur sur fonction
 	}
+	ft_putstr(env.buffer);
 	va_end(args);
 	return 0;
 }
 
 int		main(void)
 {
-	printf("voici une %sqqqqqs de caractere %s %d", "huit", "deux", 15);
+	ft_printf("voici une %qqqqqs de caractere  \n", "huit", "deux", 15);
 	return 0;
 }

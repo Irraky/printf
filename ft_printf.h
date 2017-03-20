@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/20 16:29:47 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/20 21:02:30 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ typedef struct			s_env
 	char				*flags;
 }						t_env;
 
+void					get_data(t_env *env, const char *format);
 #endif
