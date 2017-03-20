@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/20 12:41:56 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/20 16:29:31 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,43 +30,55 @@ static void		ft_putinit(t_env *env, char *addit, int size)
 	}
 }
 
-static void		ft_init_env(t_env *env, const char *format)
+static void		ft_init_env(t_env *env)
 {
 	env->indexstr = -1;
 	env->indexbuff = 0;
-	env->str = format;
+	env->conversion = -1;
+	env->flags = NULL;
 	ft_bzero(&env->buffer, BUFF_SIZE);
 }
 
-int		ft_printf(const char *format, ...)
+static void		destroy_env(t_env *env)
+{
+	ft_memdel((void **)&(env->buffer));
+	ft_memdel((void **)&(env->str));
+	ft_memdel((void **)&(env->flags));
+}
+
+static void		ft_get_flags(t_env *env, const char *format)
+{
+	int		i;
+	char	*conversions;
+
+	i = 0;
+	conversions = "SspDdiOoUuXxCcEeFfGgAan";
+	
+}
+int				ft_printf(const char *format, ...)
 {
 	t_env		env;
 	va_list		args;
 	int			i;
 
 	i = 0;
-	ft_init_env(&env, format);
+	ft_init_env(&env);
 	va_start(args, format);
-	while (env.str[++env.indexstr])
+	while (format[++env.indexstr])
 	{
-		while (env.str[env.indexstr] != '%' && env.str)
+		while (format[env.indexstr] != '%' && format)
 			++env.indexstr;
-		ft_putinit(&env, (char *)&env.str[i], env.indexstr - i);
-		i = env.indexstr + 1;
-		ft_get_flags(&env);
-		ft_putinit(&env, tab[ft_conversion], -1);  //faire tableau pointeur sur fonction
-		/*if (env.str[i] == '%')
-			ft_search;*/
+		ft_putinit(&env, (char *)&format[i], env.indexstr - i - 1);
+		ft_get_flags(&env, format);
+		i = env.indexstr + ft_strlen(env.flags) + 1;
+		ft_putinit(&env, tab[env.conversion], -1);  //faire tableau pointeur sur fonction
 	}
-	printf("%d", env.indexbuff);
-	env.indexbuff = 0;
-	printf("%s", env.buffer);
 	va_end(args);
 	return 0;
 }
 
 int		main(void)
 {
-	ft_printf("voici une %sqqqqqs de caractere %s %d", "huit", "deux", 15);
+	printf("voici une %sqqqqqs de caractere %s %d", "huit", "deux", 15);
 	return 0;
 }
