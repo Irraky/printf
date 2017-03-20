@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/18 17:33:50 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/20 12:41:59 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,11 @@
 
 typedef struct			s_env
 {
-	int					index;
+	int					indexstr;
+	int					indexbuff;
 	char				buffer[BUFF_SIZE];
 	const char			*str;
+	char				*flags;
 }						t_env;
 
 #endif
