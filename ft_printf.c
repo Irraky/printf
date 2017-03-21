@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/20 21:02:27 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/21 01:13:09 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,17 @@ int				ft_printf(const char *format, ...)
 	i = 0;
 	ft_init_env(&env);
 	va_start(args, format);
-	printf("%s", format);
 	while (format[++env.indexstr])
 	{
 		while (format[env.indexstr] != '%' && format[env.indexstr])
 			++env.indexstr;
-		ft_putinit(&env, (char *)&format[i], env.indexstr - i);
-		//get_data(&env, format);
-		i = env.indexstr; //qjouter taille argument
-	//	ft_putinit(&env, tab[env.conversion], -1);  //faire tableau pointeur sur fonction
+		if (format[env.indexstr] == '%')
+		{
+			ft_putinit(&env, (char *)&format[i], env.indexstr - i);
+			get_data(&env, format);
+			i = env.indexstr;
+		//	ft_putinit(&env, tab[env.conversion], -1);  //faire tableau pointeur sur fonction
+		}
 	}
 	ft_putstr(env.buffer);
 	va_end(args);
