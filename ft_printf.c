@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/21 01:13:09 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/22 16:58:44 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		ft_putinit(t_env *env, char *addit, int size)
 
 static void		ft_init_env(t_env *env)
 {
-	env->indexstr = -1;
+	env->indexstr = 0;
 	env->indexbuff = 0;
 	env->conversion = -1;
 	env->flags = NULL;
@@ -40,10 +40,10 @@ static void		ft_init_env(t_env *env)
 }
 
 /*static void		destroy_env(t_env *env)
-{
-	ft_memdel((void **)&(env->buffer));
-	ft_memdel((void **)&(env->flags));
-}*/
+  {
+  ft_memdel((void **)&(env->buffer));
+  ft_memdel((void **)&(env->flags));
+  }*/
 
 int				ft_printf(const char *format, ...)
 {
@@ -54,25 +54,26 @@ int				ft_printf(const char *format, ...)
 	i = 0;
 	ft_init_env(&env);
 	va_start(args, format);
-	while (format[++env.indexstr])
+	while (format[env.indexstr])
 	{
 		while (format[env.indexstr] != '%' && format[env.indexstr])
 			++env.indexstr;
+		ft_putinit(&env, (char *)&format[i], env.indexstr - i);
 		if (format[env.indexstr] == '%')
 		{
-			ft_putinit(&env, (char *)&format[i], env.indexstr - i);
 			get_data(&env, format);
 			i = env.indexstr;
-		//	ft_putinit(&env, tab[env.conversion], -1);  //faire tableau pointeur sur fonction
+			ft_putinit(&env, "%s", -1);  //faire tableau pointeur sur fonction
+			env.conversion = -1;
 		}
 	}
 	ft_putstr(env.buffer);
 	va_end(args);
-	return 0;
+	return (0);
 }
 
 int		main(void)
 {
-	ft_printf("voici une %qqqqqs de caractere  \n", "huit", "deux", 15);
-	return 0;
+	ft_printf("%voici une %qqqqqs de caractere% struc troc % hhhs \ncoincoini\n renw");
+	return (0);
 }

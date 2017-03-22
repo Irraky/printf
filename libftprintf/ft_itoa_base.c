@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 13:36:47 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/18 17:07:38 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/22 14:42:20 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static void		ft_strrev2(char *s1)
 {
-	char		s2[65];
+	char			s2[65];
 	size_t			i;
 	size_t			j;
 
@@ -31,14 +31,14 @@ static void		ft_strrev2(char *s1)
 	}
 }
 
-void	ft_itoa_base(unsigned long long  num, unsigned long long base, char *nb)
+void			ft_itoa_base(unsigned long long num, unsigned long long base,
+		char *nb)
 {
-	char	*str;
-	int		i;
+	char			*str;
+	int				i;
 
 	str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	i = 0;
-
 	if (num == 0)
 		nb[0] = '0';
 	while (num > 0)

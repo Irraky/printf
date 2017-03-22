@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrev.c                                        :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/11 13:21:53 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/22 14:38:37 by drecours         ###   ########.fr       */
+/*   Created: 2017/03/20 15:55:48 by drecours          #+#    #+#             */
+/*   Updated: 2017/03/20 15:57:12 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrev(char *s1)
+void	ft_exit(char *s, int status)
 {
-	char	*s2;
-	int		i;
-	int		j;
-
-	if (!*s1 || !s1)
-		return (NULL);
-	if (!(s2 = (char*)malloc((char)sizeof(ft_strlen(s1) + 1))))
-		return (NULL);
-	j = 0;
-	i = ft_strlen(s1) - 1;
-	while (s1[j])
-	{
-		s2[i] = s1[j];
-		j++;
-		i--;
-	}
-	return (s2);
+	ft_putendl(s);
+	exit(status);
 }
