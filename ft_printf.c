@@ -6,14 +6,14 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/22 16:58:44 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/23 17:41:34 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "ft_printf.h"
 
-static void		ft_putinit(t_env *env, char *addit, int size)
+void		ft_putinit(t_env *env, char *addit, int size)
 {
 	int		i;
 
@@ -34,9 +34,10 @@ static void		ft_init_env(t_env *env)
 {
 	env->indexstr = 0;
 	env->indexbuff = 0;
-	env->conversion = -1;
-	env->flags = NULL;
+	env->conv.conversion = -1;
+	ft_bzero(env->conv.flags, 4);
 	ft_bzero(&env->buffer, BUFF_SIZE);
+	ft_bzero(&env->conv.nb, 65);
 }
 
 /*static void		destroy_env(t_env *env)
@@ -63,8 +64,9 @@ int				ft_printf(const char *format, ...)
 		{
 			get_data(&env, format);
 			i = env.indexstr;
-			ft_putinit(&env, "%s", -1);  //faire tableau pointeur sur fonction
-			env.conversion = -1;
+			/*tab_tconv[env.conv.conversion](args, &env);  //faire tableau pointeur sur fonction*/ //Non.
+			env.conv.conversion = -1;
+			///ft_cleanit struc conversion
 		}
 	}
 	ft_putstr(env.buffer);
@@ -74,6 +76,6 @@ int				ft_printf(const char *format, ...)
 
 int		main(void)
 {
-	ft_printf("%voici une %qqqqqs de caractere% struc troc % hhhs \ncoincoini\n renw");
+	ft_printf("%viici une %qqqqqu de caractere% xtruc troc % hhhU \ncoincoini\n %drenw", 8, 12, 13, 24, 12);
 	return (0);
 }

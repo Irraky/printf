@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/22 16:23:54 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/23 16:15:45 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,23 @@ void	get_data(t_env *env, const char *format)
 
 	i = 1;
 	j = -1;
-	conversions = "SspDdiOoUuXxCc%";
+	//conversions = "SspDdiOoUuXxCc%";
+	conversions = "uUidXSspDOoUxCc%";
 	while (format[env->indexstr + i])
 	{
 		while (conversions[++j])
 			if (format[env->indexstr + i] == conversions[j])
 			{
-				env->conversion = j;
+				env->conv.conversion = j;
 				break;
 			}
-		if (env->conversion > 0)
+		if (env->conv.conversion > 0)
 			break;
 		j = 0;
 		i++;
 	}
-	if (env->conversion == -1)
-		ft_exit("Pas d'argument de conversion", ERROR);
+	if (env->conv.conversion == -1)
+		ft_exit("\n Il manque un argument de conversion", ERROR);
 	//get_features(&env, &format[env->indexstr], i);
 	env->indexstr = env->indexstr + i + 1;
 }

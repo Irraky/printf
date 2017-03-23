@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 13:36:47 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/22 14:42:20 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/23 14:19:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		ft_strrev2(char *s1)
 	size_t			i;
 	size_t			j;
 
-	ft_bzero(s2, 36);
+	ft_bzero(s2, 65);
 	ft_strcpy(s2, s1);
 	j = 0;
 	i = ft_strlen(s1) - 1;
