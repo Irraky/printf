@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:36:48 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/23 15:50:11 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/25 12:39:54 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	convnbu(va_list args, t_env *env)
 {
-	ft_itoa_base(va_arg(args, long int), 10, env->conv.nb);
+	ft_itoa_base(va_arg(args, unsigned int), 10, env->conv.nb);
 	ft_putinit(env, env->conv.nb, -1);
 }
 
