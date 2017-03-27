@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 15:51:51 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 18:24:47 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 #include <stdlib.h>
 
 # define ERROR -1
-# define FAILED_TO_MALLOC -26
 # define BUFF_SIZE 1024
 
 typedef struct			s_conversion_pourcent
@@ -27,6 +26,8 @@ typedef struct			s_conversion_pourcent
 	int					conversion;
 	char				nb[65];
 	char				nbp[65];
+	int					precision;
+	int					champ;
 	char				flags[4];
 }						t_conversion_pourcent;
 
@@ -64,6 +65,10 @@ void					convc(va_list arg, t_env *env);
 void					convpercent(va_list arg, t_env *env);
 
 /*
+**Flags
+*/
+
+/*
 **LIBFT
 */
 int						atoi(const char *str);
@@ -80,6 +85,6 @@ void					ft_putstr(char const *s);
 void					ft_putstr_fd(char const *s, int fd);
 char					*ft_strcpy(char *dst, const char *src);
 size_t					ft_strlen(const char *s);
-int						ft_toupper(int c);
+int						ft_tolower(int c);
 
 #endif

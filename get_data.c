@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 15:30:10 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 17:46:05 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	get_data(t_env *env, const char *format)
 		j = -1;
 		i++;
 	}
-	if (env->conv.conversion == -1)
+	if (env->conv.conversion < 0)
 		ft_exit("\n Il manque un argument de conversion", ERROR);
 	//get_features(&env, &format[env->indexstr], i);
 	env->indexstr = env->indexstr + i + 1;
