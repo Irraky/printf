@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 18:23:12 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 21:28:23 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,16 @@ static void		ft_init_env(t_env *env)
 {
 	env->indexstr = 0;
 	env->indexbuff = 0;
+	env->i = 0;
 	env->conv.conversion = -1;
-	ft_bzero(&env->conv.flags, 4);
 	ft_bzero(&env->buffer, BUFF_SIZE);
 	ft_bzero(&env->conv.nb, 65);
 	ft_bzero(&env->conv.nbp, 65);
 	env->weight = 0;
 	env->conv.champ = -1;
 	env->conv.precision = -1;
+	env->conv.neg = -1;
+	env->conv.zero = -1;
 }
 
 
@@ -57,29 +59,28 @@ void			cleanit(t_env *env)
 	env->conv.conversion = -1;
 	ft_bzero(&env->conv.nb, 65);
 	ft_bzero(&env->conv.nbp, 65);
-	ft_bzero(&env->conv.flags, 4);
+	env->i = env->indexstr;
+	env->conv.neg = -1;
+	env->conv.zero = -1;
 }
 
 int				ft_printf(const char *format, ...)
 {
 	t_env		env;
 	va_list		args;
-	int			i;
 	const tconv tabconv[] = {convgs, convs, convp, convgd, convd, convi, convgo,
 		convo, convgu, convu, convgx, convx, convgc, convc, convpercent};
 
-	i = 0;
 	ft_init_env(&env);
 	va_start(args, format);
 	while (format[env.indexstr])
 	{
 		while (format[env.indexstr] != '%' && format[env.indexstr])
 			++env.indexstr;
-		ft_putinit(&env, (char *)&format[i], env.indexstr - i);
+		ft_putinit(&env, (char *)&format[env.i], env.indexstr - env.i);
 		if (format[env.indexstr] == '%')
 		{
 			get_data(&env, format);
-			i = env.indexstr;
 			tabconv[env.conv.conversion](args, &env);
 			cleanit(&env);
 		}

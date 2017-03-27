@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 13:36:47 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 13:45:17 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 18:12:00 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void			ft_itoa_base(unsigned long long num, unsigned long long base,
 	char			*str;
 	int				i;
 
-	str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	str = "0123456789abcdefghijklmnopqrstuvwxyz";
 	i = 0;
 	if (num == 0)
 		nb[0] = '0';

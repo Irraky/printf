@@ -6,20 +6,20 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 17:46:05 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 21:03:18 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
-/*
-**void	get_features(t_env *env, char *format, int limit)
-**{
-**	while (++*format)
-**	{
-**	}
-**}
-*/
+
+void	get_features(t_env *env, const char *format)
+{
+	getchamp(env, format);
+	getprecision(env, format);
+}
+
 
 void	get_data(t_env *env, const char *format)
 {
@@ -44,6 +44,6 @@ void	get_data(t_env *env, const char *format)
 	}
 	if (env->conv.conversion < 0)
 		ft_exit("\n Il manque un argument de conversion", ERROR);
-	//get_features(&env, &format[env->indexstr], i);
 	env->indexstr = env->indexstr + i + 1;
+	get_features(env, format);
 }

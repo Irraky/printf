@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 18:24:47 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 23:54:57 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,14 @@ typedef struct			s_conversion_pourcent
 	char				nbp[65];
 	int					precision;
 	int					champ;
-	char				flags[4];
+	int					neg;
+	int					zero;
 }						t_conversion_pourcent;
 
 typedef struct			s_env
 {
 	int						indexstr;
+	int						i;
 	int						indexbuff;
 	int						weight;
 	char					buffer[BUFF_SIZE];
@@ -65,13 +67,17 @@ void					convc(va_list arg, t_env *env);
 void					convpercent(va_list arg, t_env *env);
 
 /*
-**Flags
+**FLAGS
 */
+
+void					getchamp(t_env *env, const char *format);
+void					getprecision(t_env *env, const char *format);
 
 /*
 **LIBFT
 */
-int						atoi(const char *str);
+int						ft_atoi(const char *str);
+int						ft_isdigit(int c);
 void					ft_bzero(void *s, size_t n);
 void					ft_exit(char *s, int status);
 int						ft_ilen(int n);
