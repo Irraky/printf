@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 12:05:44 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 12:53:23 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,15 @@ static void		ft_init_env(t_env *env)
 	ft_bzero(&env->conv.nb, 65);
 }
 
-/*static void		destroy_env(t_env *env)
+static void		destroy_env(t_env *env)
   {
-  ft_memdel((void **)&(env->buffer));
-  ft_memdel((void **)&(env->flags));
-  }*/
+  }
 
 void			cleanit(t_env *env)
 {
 	env->conv.conversion = -1;
 	ft_bzero(&env->conv.nb, 65);
 	ft_bzero(&env->conv.flags, 4);
-	
 }
 
 int				ft_printf(const char *format, ...)
@@ -79,6 +76,7 @@ int				ft_printf(const char *format, ...)
 			cleanit(&env);
 		}
 	}
+	destroy_env(&env);
 	ft_putstr(env.buffer);
 	va_end(args);
 	return (0);
@@ -88,6 +86,6 @@ int		main(void)
 {
 	int		d;
 	d = 27;
-	ft_printf("i%u %ud iiu", 8, 12, 13, 24, 12);
+	ft_printf("i\n%u\n%u\n%s\n%i %ud iiu", 10, 8, &d, 24, 12);
 	return (0);
 }
