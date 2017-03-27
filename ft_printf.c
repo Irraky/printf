@@ -6,12 +6,12 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 12:53:23 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 15:52:19 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "ft_printf.h"
+#include "libftprintf.h"
 
 void		ft_putinit(t_env *env, char *addit, int size)
 {
@@ -23,6 +23,7 @@ void		ft_putinit(t_env *env, char *addit, int size)
 		env->buffer[env->indexbuff] = addit[i];
 		if (env->indexbuff++ >= BUFF_SIZE)
 		{
+			env->weight += 1024;
 			ft_putstr((char const *)env->buffer);
 			ft_bzero(&env->buffer, BUFF_SIZE);
 			env->indexbuff = 0;
@@ -38,16 +39,21 @@ static void		ft_init_env(t_env *env)
 	ft_bzero(&env->conv.flags, 4);
 	ft_bzero(&env->buffer, BUFF_SIZE);
 	ft_bzero(&env->conv.nb, 65);
+	env->weight = 0;
 }
 
+
 static void		destroy_env(t_env *env)
-  {
-  }
+{
+	env->weight += strlen(env->buffer);
+}
+
 
 void			cleanit(t_env *env)
 {
 	env->conv.conversion = -1;
 	ft_bzero(&env->conv.nb, 65);
+	ft_bzero(&env->conv.nbp, 65);
 	ft_bzero(&env->conv.flags, 4);
 }
 
@@ -55,9 +61,9 @@ int				ft_printf(const char *format, ...)
 {
 	t_env		env;
 	va_list		args;
-	int			i; 
-	const tconv tab_conv[] = {convgs, convs, convp, convgd, convd, convi, convgo,
-	convo, convgu, convu, convgx, convx, convgc, convc};
+	int			i;
+	const tconv tabconv[] = {convgs, convs, convp, convgd, convd, convi, convgo,
+		convo, convgu, convu, convgx, convx, convgc, convc, convpercent};
 
 	i = 0;
 	ft_init_env(&env);
@@ -71,21 +77,12 @@ int				ft_printf(const char *format, ...)
 		{
 			get_data(&env, format);
 			i = env.indexstr;
-			//printf("\ntest : %d\n", env.conv.conversion);
-			tab_conv[env.conv.conversion](args, &env);
+			tabconv[env.conv.conversion](args, &env);
 			cleanit(&env);
 		}
 	}
 	destroy_env(&env);
 	ft_putstr(env.buffer);
 	va_end(args);
-	return (0);
-}
-
-int		main(void)
-{
-	int		d;
-	d = 27;
-	ft_printf("i\n%u\n%u\n%s\n%i %ud iiu", 10, 8, &d, 24, 12);
-	return (0);
+	return (env.weight);
 }

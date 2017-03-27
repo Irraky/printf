@@ -6,42 +6,45 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 13:36:47 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/13 10:40:43 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 13:45:17 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "libftprintf.h"
 
-static int		ilen_base(size_t num, size_t base)
+static void		ft_strrev2(char *s1)
 {
-	int		l;
+	char			s2[65];
+	size_t			i;
+	size_t			j;
 
-	l = 1;
-	while (num)
+	ft_bzero(s2, 65);
+	ft_strcpy(s2, s1);
+	j = 0;
+	i = ft_strlen(s1) - 1;
+	while (s2[j])
 	{
-		num /= base;
-		l++;
+		s1[i] = s2[j];
+		j++;
+		i--;
 	}
-	return (l);
 }
 
-char	*ft_itoa_base(size_t num, size_t base)
+void			ft_itoa_base(unsigned long long num, unsigned long long base,
+		char *nb)
 {
-	char	*str;
-	char	*nb;
-	int		i;
+	char			*str;
+	int				i;
 
 	str = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	nb = ft_strnew(ilen_base(num, base));
 	i = 0;
 	if (num == 0)
-		return ("0");
+		nb[0] = '0';
 	while (num > 0)
 	{
 		nb[i] = str[num % base];
 		i++;
 		num = num / base;
 	}
-	return (ft_strrev(nb));
+	ft_strrev2(nb);
 }
