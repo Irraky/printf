@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/23 16:15:45 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 12:05:08 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,23 @@ void	get_features(t_env *env, char *format, int limit)
 
 void	get_data(t_env *env, const char *format)
 {
-	int		i;
-	int		j;
-	char	*conversions;
+	int			i;
+	int			j;
+	const char	*conversions = "SspDdiOoUuXxCc";
 
-	i = 1;
+	i = 0;
 	j = -1;
-	//conversions = "SspDdiOoUuXxCc%";
-	conversions = "uUidXSspDOoUxCc%";
 	while (format[env->indexstr + i])
 	{
 		while (conversions[++j])
 			if (format[env->indexstr + i] == conversions[j])
 			{
-				env->conv.conversion = j;
+				env->conv.conversion = j + 1;
 				break;
 			}
 		if (env->conv.conversion > 0)
 			break;
-		j = 0;
+		j = -1;
 		i++;
 	}
 	if (env->conv.conversion == -1)

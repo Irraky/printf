@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/23 17:41:20 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 12:09:43 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct			s_conversion_pourcent
 {
 	int					conversion;
 	char				nb[65];
-	char				*flags[4];
+	char				flags[4];
 }						t_conversion_pourcent;
 
 typedef struct			s_env
@@ -38,16 +38,23 @@ typedef struct			s_env
 void					ft_putinit(t_env *env, char *addit, int size);
 void					get_data(t_env *env, const char *format);
 
+typedef void			(*tconv)(va_list arg, t_env *env);
 /*
 **CONVERSIONS
 */
-void					convnbu(va_list arg, t_env *env);
-void					convnbgu(va_list arg, t_env *env);
-void					convnbi(va_list arg, t_env *env);
-void					convnbd(va_list arg, t_env *env);
-void					convnbgx(va_list arg, t_env *env);
+void					convgs(va_list arg, t_env *env);
+void					convs(va_list arg, t_env *env);
+void					convp(va_list arg, t_env *env);
+void					convgd(va_list arg, t_env *env);
+void					convd(va_list arg, t_env *env);
+void					convi(va_list arg, t_env *env);
+void					convgo(va_list arg, t_env *env);
+void					convo(va_list arg, t_env *env);
+void					convgu(va_list arg, t_env *env);
+void					convu(va_list arg, t_env *env);
+void					convgx(va_list arg, t_env *env);
+void					convx(va_list arg, t_env *env);
+void					convgc(va_list arg, t_env *env);
+void					convc(va_list arg, t_env *env);
 
-/*typedef void			(*tconv)(va_list arg, t_env *env);
-tconv	tab_tconv[6] = {convnbu, convnbgu, convnbi, convnbd, convnbgx
-};*/    //BORDEL faux
 #endif

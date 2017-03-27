@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/23 17:41:34 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/27 12:05:44 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void		ft_init_env(t_env *env)
 	env->indexstr = 0;
 	env->indexbuff = 0;
 	env->conv.conversion = -1;
-	ft_bzero(env->conv.flags, 4);
+	ft_bzero(&env->conv.flags, 4);
 	ft_bzero(&env->buffer, BUFF_SIZE);
 	ft_bzero(&env->conv.nb, 65);
 }
@@ -46,11 +46,21 @@ static void		ft_init_env(t_env *env)
   ft_memdel((void **)&(env->flags));
   }*/
 
+void			cleanit(t_env *env)
+{
+	env->conv.conversion = -1;
+	ft_bzero(&env->conv.nb, 65);
+	ft_bzero(&env->conv.flags, 4);
+	
+}
+
 int				ft_printf(const char *format, ...)
 {
 	t_env		env;
 	va_list		args;
-	int			i;
+	int			i; 
+	const tconv tab_conv[] = {convgs, convs, convp, convgd, convd, convi, convgo,
+	convo, convgu, convu, convgx, convx, convgc, convc};
 
 	i = 0;
 	ft_init_env(&env);
@@ -64,9 +74,9 @@ int				ft_printf(const char *format, ...)
 		{
 			get_data(&env, format);
 			i = env.indexstr;
-			/*tab_tconv[env.conv.conversion](args, &env);  //faire tableau pointeur sur fonction*/ //Non.
-			env.conv.conversion = -1;
-			///ft_cleanit struc conversion
+			//printf("\ntest : %d\n", env.conv.conversion);
+			tab_conv[env.conv.conversion](args, &env);
+			cleanit(&env);
 		}
 	}
 	ft_putstr(env.buffer);
@@ -76,6 +86,8 @@ int				ft_printf(const char *format, ...)
 
 int		main(void)
 {
-	ft_printf("%viici une %qqqqqu de caractere% xtruc troc % hhhU \ncoincoini\n %drenw", 8, 12, 13, 24, 12);
+	int		d;
+	d = 27;
+	ft_printf("i%u %ud iiu", 8, 12, 13, 24, 12);
 	return (0);
 }
