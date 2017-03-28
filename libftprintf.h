@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 23:54:57 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/28 01:52:03 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ typedef struct			s_conversion_pourcent
 	int					champ;
 	int					neg;
 	int					zero;
+	int					space;
+	int					sharp;
+	int					plus;
 }						t_conversion_pourcent;
 
 typedef struct			s_env
@@ -72,6 +75,7 @@ void					convpercent(va_list arg, t_env *env);
 
 void					getchamp(t_env *env, const char *format);
 void					getprecision(t_env *env, const char *format);
+void					littleflags(t_env *env, const char *format);
 
 /*
 **LIBFT
