@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 18:25:00 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 23:07:01 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/28 02:03:18 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,20 @@ void			getprecision(t_env *env, const char *format)
 		}
 		add ++;
 	}
+}
+
+void			littleflags(t_env *env, const char *format)
+{
+	int			var;
+
+	var = -1;
+	while (env->i + ++var < env->indexstr - 1)
+		{
+			if (format[env->i + var] == ' ')
+				env->conv.space = 1;
+			if (format[env->i + var] == '#')
+				env->conv.sharp = 1;
+			if (format[env->i + var] == '+')
+				env->conv.plus = 1;
+		}
 }

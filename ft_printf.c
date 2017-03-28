@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 21:28:23 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/28 02:07:48 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ static void		ft_init_env(t_env *env)
 	env->conv.precision = -1;
 	env->conv.neg = -1;
 	env->conv.zero = -1;
+	env->conv.space = -1;
+	env->conv.sharp = -1;
+	env->conv.plus = -1;
 }
 
 
@@ -62,6 +65,9 @@ void			cleanit(t_env *env)
 	env->i = env->indexstr;
 	env->conv.neg = -1;
 	env->conv.zero = -1;
+	env->conv.plus = -1;
+	env->conv.sharp = -1;
+	env->conv.space = -1;
 }
 
 int				ft_printf(const char *format, ...)

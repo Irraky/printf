@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 21:03:18 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/28 01:41:48 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	get_features(t_env *env, const char *format)
 {
 	getchamp(env, format);
 	getprecision(env, format);
+	littleflags(env, format);
 }
 
 
