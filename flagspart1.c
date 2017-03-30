@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 18:25:00 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/28 02:03:18 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/30 14:43:02 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void			getprecision(t_env *env, const char *format)
 		{
 			while (ft_isdigit(format[env->i + ++add]))
 				transit[++place] = format[env->i + add];
+			if (add == 0)
+				transit[++place] = '0';
 			transit[place + 1] = '\0';
 			env->conv.precision = ft_atoi(transit);
 			break ;

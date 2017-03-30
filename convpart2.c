@@ -6,12 +6,11 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:54:51 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/28 07:36:25 by drecours         ###   ########.fr       */
+/*   Updated: 2017/03/30 17:44:18 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
 void			convs(va_list args, t_env *env)
 {
@@ -24,9 +23,8 @@ void			convs(va_list args, t_env *env)
 		j = -1;
 		i = (env->conv.precision > (int)ft_strlen(str)) ? (env->conv.champ -
 				ft_strlen(str)) : (env->conv.champ - env->conv.precision);
-		if (env->conv.precision < 0)
-			i = env->conv.champ - ft_strlen(str);
-		if (env->conv.neg == -1)
+		i = (env->conv.precision < 0) ? env->conv.champ - ft_strlen(str) : i;
+		if (env->conv.neg == 0)
 		{
 			while (++j < i)
 				ft_putinit(env, " ", -1);
@@ -73,41 +71,46 @@ static void			convoplus(t_env *env)
 {
 	int		i;
 
-	i = (env->conv.sharp) ? 1 : 0;
-	i += ft_strlen(env->conv.nb);
-	while (env->conv.precision++ < env->conv.champ - i)
-		ft_putinit(env, " ", -1);
+	i = ft_strlen(env->conv.nb) + env->conv.sharp;
+	while (i++ < env->conv.precision)
+		;
+	if (env->conv.precision == 0 && env->conv.nb[0] == '0' &&
+				env->conv.nb[1] == '\0')
+		i = env->conv.sharp + 1;
+	while (env->conv.champ-- >= i)
+	{
+		if (env->conv.zero == 1)
+			ft_putinit(env, "0", -1);
+		else
+			ft_putinit(env, " ", -1);
+	}
+	i = ft_strlen(env->conv.nb) + env->conv.sharp;
 	while (i++ < env->conv.precision)
 		ft_putinit(env, "0", -1);
-	if (env->conv.sharp == 1 && (env->conv.nb[0] != '0' && env->conv.nb[1]
-				!= '\0'))
+	if (env->conv.sharp == 1)
 		ft_putinit(env, "0", -1);
-	ft_putinit(env, env->conv.nb, -1);
+	if (!(env->conv.precision == 0 && env->conv.nb[0] == '0' &&
+				env->conv.nb[1] == '\0'))
+		ft_putinit(env, env->conv.nb, -1);
 }
 
 void			convo(va_list args, t_env *env)
 {
 	int		i;
 
-	i = (env->conv.sharp == 1) ? 1 : 0;
 	ft_itoa_base(va_arg(args, unsigned int), 8, env->conv.nb);
-	i += ft_strlen(env->conv.nb);
+	i = ft_strlen(env->conv.nb) + env->conv.sharp;
 	if (env->conv.neg == 1)
 	{
 		if (env->conv.sharp == 1)
 			ft_putinit(env, "0", -1);
 		while (i++ < env->conv.precision)
 			ft_putinit(env, "0", -1);
-		ft_putinit(env, env->conv.nb, -1);
-		i = ft_strlen(env->conv.nb);
-		env->conv.champ -= (i + 1);
-		while (env->conv.champ-- > 0)
-		{
-			if (env->conv.zero == 1)
-				ft_putinit(env, "0", -1);
-			else
-				ft_putinit(env, " ", -1);
-		}
+		if (!(env->conv.precision == 0 && env->conv.nb[0] == '0' && 
+					env->conv.nb[1] == '\0'))
+			ft_putinit(env, env->conv.nb, -1);
+		while (env->conv.champ-- >= i)
+			ft_putinit(env, " ", -1);
 	}
 	else
 		convoplus(env);
