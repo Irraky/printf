@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:36:48 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/04 16:54:39 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/06 14:02:33 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ static void		convguplus(t_env *env)
 	while (env->conv.champ > i)
 	{
 		if (env->conv.zero == 1)
-			ft_putinit(env, "0", -1);
+			ft_putinit(env, "0", 1);
 		else
-			ft_putinit(env, " ", -1);
+			ft_putinit(env, " ", 1);
 		env->conv.champ--;
 	}
 	i = ft_strlen(env->conv.nb);
 	while (i++ < env->conv.precision)
-		ft_putinit(env, "0", -1);
+		ft_putinit(env, "0", 1);
 	if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0'
 				&& env->conv.precision > -1))
 		ft_putinit(env, env->conv.nb, -1);
@@ -88,7 +88,7 @@ void			convgu(va_list args, t_env *env)
 {
 	int		i;
 
-	ft_itoa_base(va_arg(args, unsigned long), 10, env->conv.nb);
+	ft_itoa_base(va_arg(args, unsigned long long), 10, env->conv.nb);
 	i = ft_strlen(env->conv.nb);
 	if (env->conv.neg == 1)
 	{
@@ -104,21 +104,4 @@ void			convgu(va_list args, t_env *env)
 	}
 	else
 		convguplus(env);
-}
-
-void			convi(va_list args, t_env *env)
-{
-	ft_itoa(va_arg(args, signed int), env->conv.nb);
-	ft_putinit(env, env->conv.nb, -1);
-}
-
-void			convx(va_list args, t_env *env)
-{
-	ft_itoa_base(va_arg(args, unsigned int), 16, env->conv.nb);
-	ft_putinit(env, env->conv.nb, -1);
-}
-
-void			convd(va_list args, t_env *env)
-{
-	convi(args, env);
 }

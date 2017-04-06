@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:54:51 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/01 13:51:24 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/06 14:02:29 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void			convc(va_list args, t_env *env)
 	i = -1;
 	if (env->conv.neg == 1)
 	{
-		ft_putinit(env, (char *)s, 11);
+		ft_putinit(env, (char *)s, 1);
 		while (++i < env->conv.champ - 1)
 			ft_putinit(env, " ", -1);
 	}
@@ -59,12 +59,6 @@ void			convc(va_list args, t_env *env)
 		ft_putinit(env, (char *)s, 1);
 	}
 	env->weight = (s[0] == 0) ? env->weight + 1 : env->weight;
-}
-
-void			convgd(va_list args, t_env *env)
-{
-	ft_itoa_base(va_arg(args, long int), 10, env->conv.nb);
-	ft_putinit(env, env->conv.nb, -1);
 }
 
 static void			convoplus(t_env *env)
@@ -98,7 +92,8 @@ void			convo(va_list args, t_env *env)
 {
 	int		i;
 
-	ft_itoa_base(va_arg(args, unsigned int), 8, env->conv.nb);
+	if (env->conv.conversion == 7)
+		ft_itoa_base(va_arg(args, unsigned int), 8, env->conv.nb);
 	i = ft_strlen(env->conv.nb) + env->conv.sharp;
 	if (env->conv.neg == 1)
 	{
@@ -109,8 +104,8 @@ void			convo(va_list args, t_env *env)
 		if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0' 
 					&& env->conv.precision <= 0 && env->conv.champ != 0))
 			ft_putinit(env, env->conv.nb, -1);
-	if (env->conv.nb[0] == '0' && env->conv.nb[1] == '\0')
-		i--;
+		if (env->conv.nb[0] == '0' && env->conv.nb[1] == '\0')
+			i--;
 		while (env->conv.champ-- >= i)
 			ft_putinit(env, " ", -1);
 	}
@@ -118,9 +113,22 @@ void			convo(va_list args, t_env *env)
 		convoplus(env);
 }
 
-void			convp(va_list args, t_env *env)
+void	convpercent(va_list args, t_env *env)
 {
-	ft_putinit(env, "0x", -1);
-	ft_itoa_base(va_arg(args, long long int), 16, env->conv.nb);
-	ft_putinit(env, env->conv.nb, -1);
+	int		i;
+
+	(void)args;
+	i = -1;
+	if (env->conv.neg == 1)
+	{
+		ft_putinit(env, "%", -1);
+		while (++i < env->conv.champ - 1)
+			ft_putinit(env, " ", -1);
+	}
+	else
+	{
+		while (++i < env->conv.champ - 1)
+			ft_putinit(env, ((env->conv.zero == 1) ? "0" : " "), -1);
+		ft_putinit(env, "%", -1);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/04 16:47:10 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/06 14:20:10 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ void	get_data(t_env *env, const char *format)
 		while (conversions[++j])
 			if (format[env->indexstr + i] == conversions[j])
 			{
-				if (j == 10 && format[env->indexstr + i - 1] == 'l')
-					env->conv.conversion = 9;
+				if ((j == 11 || j == 13 || j == 7 || j == 9 || j == 4 || j == 1)
+						&& format[env->indexstr + i - 1] == 'l')
+					env->conv.conversion = j - 1;
 				else
 					env->conv.conversion = j;
 				break ;
