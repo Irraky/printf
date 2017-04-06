@@ -6,7 +6,7 @@
 #    By: drecours <drecours@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/27 14:12:36 by drecours          #+#    #+#              #
-#    Updated: 2017/03/27 19:23:23 by drecours         ###   ########.fr        #
+#    Updated: 2017/04/06 14:09:37 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ SRC = ft_atoi.c \
 	  convpart1.c \
 	  convpart2.c \
 	  convpart3.c \
+	  convpart4.c \
+	  convpart5.c \
 	  get_data.c \
 	  flagspart1.c
 OBJ = $(SRC:.c=.o)
