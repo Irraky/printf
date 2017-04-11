@@ -6,64 +6,67 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:58:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/06 16:25:20 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/11 17:12:59 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
+#include <stdio.h>
 
-static void		convdplus(t_env *env)
+static void		convdpositif(t_env *env, int max)
 {
-	int		i;
+	int		flag;
 
-	i = ft_strlen(env->conv.nb) + env->conv.plus;
-	i = (env->conv.plus == 0 && env->conv.space == 1) ? i + 1 : i;
-	while (i < env->conv.precision)
-		i++;
-	if (env->conv.nb[0] == '0' && env->conv.nb[1] == '\0')
-		i = (env->conv.plus + env->conv.space == 0) ? 0 : 1;
-	while (env->conv.champ > i)
+	flag = 0;
+	if (env->conv.zero == 1)
 	{
-		if (env->conv.zero == 1)
-			ft_putinit(env, "0", -1);
-		else
-			ft_putinit(env, " ", -1);
-		env->conv.champ--;
+		flag = 1;
+		if (env->conv.space == 1 || env->conv.plus == 1)
+			ft_putinit(env, (env->conv.plus == 1) ? "+" : " ", 1);
 	}
-	i = ft_strlen(env->conv.nb);
-	if ((env->conv.plus == 1 || env->conv.space == 1) && env->conv.nb[0] != '-')
-		ft_putinit(env, (env->conv.plus == 1) ? "+" : " ", -1);
-	while (i++ < env->conv.precision)
-		ft_putinit(env, "0", -1);
-	if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0'
-				&& env->conv.precision > -1))
-		ft_putinit(env, env->conv.nb, -1);
+	while (env->conv.neg == 0 && env->conv.champ-- > max)
+		ft_putinit(env, (env->conv.zero == 0) ? " " : "0", 1);
+	if (flag == 0)
+		if (env->conv.space == 1 || env->conv.plus == 1)
+			ft_putinit(env, (env->conv.plus == 1) ? "+" : " ", 1);
+	while (env->conv.precision-- > (int)ft_strlen(env->conv.nb))
+		ft_putinit(env, "0", 1);
+	ft_putinit(env, env->conv.nb, -1);
+	while (env->conv.neg == 1 && env->conv.champ-- >= max)
+		ft_putinit(env, " ", 1);
 }
 
 void			convd(va_list args, t_env *env)
 {
-	int		i;
+	int		flag;
+	int		max;
 
+	flag = 0;
 	if (env->conv.conversion ==  4 || env->conv.conversion == 5)
 		ft_itoa(va_arg(args, signed int), env->conv.nb);
-	i = ft_strlen(env->conv.nb) + env->conv.plus;
-	i = (env->conv.plus == 0 && env->conv.space == 1) ? i + 1 : i;
-	if (env->conv.neg == 1)
+	max = (env->conv.precision > (int)ft_strlen(env->conv.nb)) ?
+		env->conv.precision : ft_strlen(env->conv.nb);
+	if (env->conv.nb[0] == '-')
 	{
-		if (env->conv.plus == 1 || env->conv.space == 1)
-			ft_putinit(env, (env->conv.plus == 1) ? "+" : " ", -1);
-		while (i++ < env->conv.precision)
-			ft_putinit(env, "0", -1);
+		if (env->conv.zero == 1)
+		{
+			flag++;
+			ft_putinit(env, "-", 1);
+		}
+		while(env->conv.neg == 0 && env->conv.champ-- > max)
+			ft_putinit(env, (env->conv.zero == 0) ? " " : "0", 1);
+		if (flag == 0)
+			ft_putinit(env, "-", 1);
+		while (env->conv.precision-- > (int)ft_strlen(env->conv.nb))
+			ft_putinit(env, "0", 1);
 		if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0'
-					&& env->conv.precision <= 0 && env->conv.champ != 0))
-			ft_putinit(env, env->conv.nb, -1);
-		if (env->conv.nb[0] == '0' && env->conv.nb[1] == '\0')
-			i--;
-		while (env->conv.champ-- >= i)
-			ft_putinit(env, " ", -1);
+					&& env->conv.precision > -1))
+			ft_putinit(env, &env->conv.nb[1], -1);
+		while (env->conv.neg == 1 && env->conv.champ-- >= max)
+			ft_putinit(env, " ", 1);
 	}
 	else
-		convdplus(env);
+		convdpositif(env, max);
 }
 
 void			convgd(va_list args, t_env *env)
