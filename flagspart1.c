@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 18:25:00 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/30 14:43:02 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/11 17:05:51 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void			littleflags(t_env *env, const char *format)
 {
 	int			var;
 
-	var = -1;
-	while (env->i + ++var < env->indexstr - 1)
+	var = 0;
+	while (env->i + var < env->indexstr - 1)
 		{
 			if (format[env->i + var] == ' ')
 				env->conv.space = 1;
@@ -79,5 +79,6 @@ void			littleflags(t_env *env, const char *format)
 				env->conv.sharp = 1;
 			if (format[env->i + var] == '+')
 				env->conv.plus = 1;
+			var++;
 		}
 }

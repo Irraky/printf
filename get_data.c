@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/06 14:20:10 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/11 17:02:00 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	get_data(t_env *env, const char *format)
 
 	i = 1;
 	j = -1;
+	env->i = env->indexstr;
 	while (format[env->indexstr + i])
 	{
 		while (conversions[++j])
