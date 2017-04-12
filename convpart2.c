@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:54:51 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/06 14:02:29 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/12 11:20:32 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void			convoplus(t_env *env)
 	i = ft_strlen(env->conv.nb) + env->conv.sharp;
 	while (i < env->conv.precision)
 		i++;
-	if (env->conv.nb[0] == '0' && env->conv.nb[1] == '\0')
+	if (env->conv.nb[0] == '0')
 		i = env->conv.sharp;
 	while (env->conv.champ > i)
 	{
@@ -83,8 +83,7 @@ static void			convoplus(t_env *env)
 		ft_putinit(env, "0", -1);
 	while (i++ < env->conv.precision)
 		ft_putinit(env, "0", -1);
-	if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0'
-				&& env->conv.precision > -1))
+	if (!( env->conv.nb[0] == '0' && env->conv.precision > -1))
 		ft_putinit(env, env->conv.nb, -1);
 }
 
@@ -101,10 +100,10 @@ void			convo(va_list args, t_env *env)
 			ft_putinit(env, "0", -1);
 		while (i++ < env->conv.precision)
 			ft_putinit(env, "0", -1);
-		if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0' 
-					&& env->conv.precision <= 0 && env->conv.champ != 0))
+		if (!( env->conv.nb[0] == '0' && env->conv.precision <= 0 &&
+					env->conv.champ != 0))
 			ft_putinit(env, env->conv.nb, -1);
-		if (env->conv.nb[0] == '0' && env->conv.nb[1] == '\0')
+		if (env->conv.nb[0] == '0')
 			i--;
 		while (env->conv.champ-- >= i)
 			ft_putinit(env, " ", -1);

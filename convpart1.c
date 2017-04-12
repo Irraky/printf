@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:36:48 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/06 14:02:33 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/12 11:21:47 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void		convuplus(t_env *env)
 	i = ft_strlen(env->conv.nb);
 	while (i < env->conv.precision)
 		i++;
-	if (env->conv.nb[0] == '0' && env->conv.nb[1] == '\0')
+	if (env->conv.nb[0] == '0')
 		i = 0;
 	while (env->conv.champ > i)
 	{
@@ -32,8 +32,7 @@ static void		convuplus(t_env *env)
 	i = ft_strlen(env->conv.nb);
 	while (i++ < env->conv.precision)
 		ft_putinit(env, "0", -1);
-	if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0'
-				&& env->conv.precision < -1))
+	if (!( env->conv.nb[0] == '0' && env->conv.precision < -1))
 		ft_putinit(env, env->conv.nb, -1);
 }
 
@@ -47,10 +46,10 @@ void		convu(va_list args, t_env *env)
 	{
 		while (i++ < env->conv.precision)
 			ft_putinit(env, "0", -1);
-		if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0'
-					&& env->conv.precision <= 0 && env->conv.champ != 0))
+		if (!( env->conv.nb[0] == '0' && env->conv.precision <= 0
+					&& env->conv.champ != 0))
 			ft_putinit(env, env->conv.nb, -1);
-		if (env->conv.nb[0] == '0' && env->conv.nb[1] == '\0')
+		if (env->conv.nb[0] == '0')
 			i--;
 		while (env->conv.champ-- >= i)
 			ft_putinit(env, " ", -1);
@@ -66,7 +65,7 @@ static void		convguplus(t_env *env)
 	i = ft_strlen(env->conv.nb) + env->conv.sharp;
 	while (i < env->conv.precision)
 		i++;
-	if (env->conv.nb[0] == '0' && env->conv.nb[1] == '\0')
+	if (env->conv.nb[0] == '0')
 		i = 0;
 	while (env->conv.champ > i)
 	{
@@ -79,8 +78,7 @@ static void		convguplus(t_env *env)
 	i = ft_strlen(env->conv.nb);
 	while (i++ < env->conv.precision)
 		ft_putinit(env, "0", 1);
-	if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0'
-				&& env->conv.precision > -1))
+	if (!( env->conv.nb[0] == '0' && env->conv.precision > -1))
 		ft_putinit(env, env->conv.nb, -1);
 }
 
@@ -94,10 +92,10 @@ void			convgu(va_list args, t_env *env)
 	{
 		while (i++ < env->conv.precision)
 			ft_putinit(env, "0", -1);
-		if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0'
-					&& env->conv.precision <= 0 && env->conv.champ != 0))
+		if (!( env->conv.nb[0] == '0' && env->conv.precision <= 0
+					&& env->conv.champ != 0))
 			ft_putinit(env, env->conv.nb, -1);
-		if (env->conv.nb[0] == '0' && env->conv.nb[1] == '\0')
+		if (env->conv.nb[0] == '0')
 			i--;
 		while (env->conv.champ-- >= i)
 			ft_putinit(env, " ", -1);

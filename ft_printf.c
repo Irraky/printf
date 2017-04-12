@@ -6,11 +6,10 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/30 15:18:31 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/11 16:27:03 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libftprintf.h"
 
 void		ft_putinit(t_env *env, char *addit, int size)

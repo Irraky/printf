@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:58:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/11 17:12:59 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/12 11:52:08 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ static void		convdpositif(t_env *env, int max)
 			ft_putinit(env, (env->conv.plus == 1) ? "+" : " ", 1);
 	while (env->conv.precision-- > (int)ft_strlen(env->conv.nb))
 		ft_putinit(env, "0", 1);
-	ft_putinit(env, env->conv.nb, -1);
-	while (env->conv.neg == 1 && env->conv.champ-- >= max)
+	if (!( env->conv.nb[0] == '0' && env->conv.precision > -1))
+		ft_putinit(env, env->conv.nb, -1);
+	while (env->conv.neg == 1 && env->conv.champ-- > max)
 		ft_putinit(env, " ", 1);
 }
 
@@ -59,10 +60,8 @@ void			convd(va_list args, t_env *env)
 			ft_putinit(env, "-", 1);
 		while (env->conv.precision-- > (int)ft_strlen(env->conv.nb))
 			ft_putinit(env, "0", 1);
-		if (!( env->conv.nb[0] == '0' && env->conv.nb[1] == '\0'
-					&& env->conv.precision > -1))
-			ft_putinit(env, &env->conv.nb[1], -1);
-		while (env->conv.neg == 1 && env->conv.champ-- >= max)
+		ft_putinit(env, &env->conv.nb[1], -1);
+		while (env->conv.neg == 1 && env->conv.champ-- > max)
 			ft_putinit(env, " ", 1);
 	}
 	else
@@ -82,6 +81,6 @@ void			convi(va_list args, t_env *env)
 
 void			convgo(va_list args, t_env *env)
 {
-	ft_itoa_base(va_arg(args, long int), 10, env->conv.nb);
+	ft_itoa_base(va_arg(args, long int), 8, env->conv.nb);
 	convo(args, env);
 }
