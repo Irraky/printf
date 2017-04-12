@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/28 01:52:03 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/12 14:39:34 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ typedef struct			s_env
 	int						indexbuff;
 	int						weight;
 	char					buffer[BUFF_SIZE];
+	int						j;
+	int						h;
+	int						l;
+	int						ll;
+	int						z;
 	t_conversion_pourcent	conv;
 }						t_env;
 

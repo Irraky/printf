@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:54:51 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/12 11:20:32 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/12 12:51:24 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void			convs(va_list args, t_env *env)
 	int		i;
 	int		j;
 
-	if (str)
-	{
+	//if (str)
+	//{
 		j = -1;
 		i = (env->conv.precision > (int)ft_strlen(str)) ? (env->conv.champ -
 				ft_strlen(str)) : (env->conv.champ - env->conv.precision);
@@ -36,7 +36,7 @@ void			convs(va_list args, t_env *env)
 			while (++j < i)
 				ft_putinit(env, " ", -1);
 		}
-	}
+	//}
 }
 
 void			convc(va_list args, t_env *env)
