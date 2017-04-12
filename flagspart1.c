@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 18:25:00 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/11 17:05:51 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/12 17:43:58 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void			getchamp(t_env *env, const char *format)
 	{
 		if (format[env->i + add] == '-')
 			env->conv.neg = 1;
-		if (ft_isdigit(format[env->i + add]))
+		if (format[env->i + add] == '0')
+			env->conv.zero = 1;
+		if (ft_isdigit(format[env->i + add]) && format[env->i + add] != '0')
 		{
-			if (format[env->i + add] == '0')
-				env->conv.zero = 1;
 			while (ft_isdigit(format[env->i + add]))
 			{
 				transit[++place] = format[env->i + add];

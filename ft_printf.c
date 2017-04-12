@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/12 14:31:45 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/12 18:08:01 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int				ft_printf(const char *format, ...)
 	t_env		env;
 	va_list		args;
 	const tconv tabconv[] = {convgs, convs, convp, convgd, convd, convi, convgo,
-		convo, convgu, convu, convgx, convx, convgc, convc, convpercent};
+		convo, convgu, convu, convgx, convx, convgc, convc, convpercent, vide};
 
 	ft_init_env(&env);
 	va_start(args, format);

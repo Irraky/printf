@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/12 14:39:34 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/12 18:15:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void					convx(va_list arg, t_env *env);
 void					convgc(va_list arg, t_env *env);
 void					convc(va_list arg, t_env *env);
 void					convpercent(va_list arg, t_env *env);
+void					vide(va_list arg, t_env *env);
 
 /*
 **FLAGS

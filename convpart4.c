@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:33:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/12 11:37:29 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/12 15:00:47 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		convxplus(t_env *env)
 	while (i < env->conv.precision)
 		i++;
 	if (env->conv.nb[0] == '0')
-		i = env->conv.sharp;
+		i = env->conv.sharp + 1;
 	while (env->conv.champ > i)
 	{
 		if (env->conv.zero == 1)

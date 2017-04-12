@@ -6,13 +6,19 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/12 14:32:48 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/12 18:07:48 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 #include <stdio.h>
 
+
+void	vide(va_list args, t_env *env)
+{
+	(void)args;
+	(void)env;
+}
 
 static void		get_features(t_env *env, const char *format, int i)
 {
@@ -72,5 +78,7 @@ void			get_data(t_env *env, const char *format)
 		j = -1;
 		i++;
 	}
+	if (env->conv.conversion == -1)
+		env->conv.conversion = 15;
 	get_features(env, format, i);
 }
