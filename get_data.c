@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/12 18:07:48 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/13 15:36:04 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void		get_features(t_env *env, const char *format, int i)
 
 static int		get_conv(t_env *env, int j, int i, const char *format)
 {
+		env->conv.conversion = j;
 	if ((j == 11 || j == 13 || j == 7 || j == 9 || j == 4 || j == 1)
 			&& format[env->indexstr + i - 1] == 'l'
 			&& format[env->indexstr + i - 2] == 'l')
@@ -43,18 +44,12 @@ static int		get_conv(t_env *env, int j, int i, const char *format)
 		env->l = 1;
 		env->conv.conversion = j - 1;
 	}
-	else if ((j == 11 || j == 13 || j == 7 || j == 9 || j == 4 || j == 1)
-			&& format[env->indexstr + i - 1] == 'j')
-	{
-		env->j = 1;
-	}
-	else if ((j == 11 || j == 13 || j == 7 || j == 9 || j == 4 || j == 1)
-			&& format[env->indexstr + i - 1] == 'z')
-	{
-		env->z = 1;
-	}
-	else
+	if ((j == 5 || j == 4 || j == 3) && format[env->indexstr + i - 1] == 'j')
 		env->conv.conversion = j;
+		env->j = 1;
+	if ((j == 11 || j == 13 || j == 7 || j == 9 || j == 4 || j == 1)
+			&& format[env->indexstr + i - 1] == 'z')
+		env->z = 1;
 	return (1);
 }
 

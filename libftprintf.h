@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/12 18:15:27 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/13 15:13:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct			s_env
 int						ft_printf(const char *format, ...);
 void					ft_putinit(t_env *env, char *addit, int size);
 void					get_data(t_env *env, const char *format);
+int						findconv(t_env *env, int j, int i, const char *format);
 typedef void			(*tconv)(va_list arg, t_env *env);
 
 /*
