@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:36:48 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/12 11:21:47 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/14 11:46:43 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		convu(va_list args, t_env *env)
 {
 	int		i;
 
-	ft_itoa_base(va_arg(args, unsigned int), 10, env->conv.nb);
+	convitoabase(args, env, 10);
 	i = ft_strlen(env->conv.nb);
 	if (env->conv.neg == 1)
 	{

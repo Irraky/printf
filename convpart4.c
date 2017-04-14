@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:33:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/12 15:00:47 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/14 11:48:16 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void	convx(va_list args, t_env *env)
 {
 	int		i;
 
-	if (env->conv.conversion == 11)
-		ft_itoa_base(va_arg(args, unsigned int), 16, env->conv.nb);
+	convitoabase(args, env, 16);
 	i = ft_strlen(env->conv.nb) + ((env->conv.sharp == 1) ? 2 : 0);
 	if (env->conv.neg == 1)
 	{
@@ -67,17 +66,6 @@ void	convx(va_list args, t_env *env)
 
 void	convgx(va_list args, t_env *env)
 {
-	int		i;
-
-	i = -1;
-	ft_itoa_base(va_arg(args, unsigned int), 16, env->conv.nbp);
-	while (env->conv.nbp[++i])
-	{
-		if (env->conv.nbp[i] <= 'z' && env->conv.nbp[i] >= 'a')
-			env->conv.nb[i] = env->conv.nbp[i] - 32;
-		else
-			env->conv.nb[i] = env->conv.nbp[i];
-	}
 	convx(args, env);
 }
 

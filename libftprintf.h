@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/13 15:13:27 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/13 23:03:46 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct			s_env
 	char					buffer[BUFF_SIZE];
 	int						j;
 	int						h;
+	int						hh;
 	int						l;
 	int						ll;
 	int						z;
@@ -53,12 +54,14 @@ typedef struct			s_env
 int						ft_printf(const char *format, ...);
 void					ft_putinit(t_env *env, char *addit, int size);
 void					get_data(t_env *env, const char *format);
-int						findconv(t_env *env, int j, int i, const char *format);
 typedef void			(*tconv)(va_list arg, t_env *env);
 
 /*
 **CONVERSIONS
 */
+void					convitoa(va_list arg, t_env *env);
+void					convitoabase(va_list arg, t_env *env, int base);
+
 void					convgs(va_list arg, t_env *env);
 void					convs(va_list arg, t_env *env);
 void					convp(va_list arg, t_env *env);
@@ -92,7 +95,7 @@ int						ft_isdigit(int c);
 void					ft_bzero(void *s, size_t n);
 void					ft_exit(char *s, int status);
 int						ft_ilen(int n);
-void					ft_itoa(int n, char *nb);
+void					ft_itoa(long long n, char *nb);
 void					ft_itoa_base(unsigned long long num, unsigned long long
 						base, char *nb);
 void					ft_putchar(char c);

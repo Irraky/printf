@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:58:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/13 14:55:18 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/14 11:49:17 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void			convd(va_list args, t_env *env)
 	int		max;
 
 	flag = 0;
-	if (env->conv.conversion ==  4 || env->conv.conversion == 5)
-		ft_itoa(va_arg(args, signed int), env->conv.nb);
+	convitoa(args, env);
 	max = (env->conv.precision > (int)ft_strlen(env->conv.nb)) ?
 		env->conv.precision : ft_strlen(env->conv.nb);
 	if (env->conv.precision == 0 && env->conv.nb[0] == '0')
@@ -87,7 +86,6 @@ void			convd(va_list args, t_env *env)
 
 void			convgd(va_list args, t_env *env)
 {
-	ft_itoa_base(va_arg(args, long int), 10, env->conv.nb);
 	convd(args, env);
 }
 

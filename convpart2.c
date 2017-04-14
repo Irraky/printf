@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:54:51 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/13 15:36:16 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/13 22:16:55 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void			convs(va_list args, t_env *env)
 	int		i;
 	int		j;
 
-	if (str)
+	if (str && env->l == 0)
 	{
 		j = -1;
 		i = (env->conv.precision > (int)ft_strlen(str)) ? (env->conv.champ -
@@ -37,6 +37,8 @@ void			convs(va_list args, t_env *env)
 				ft_putinit(env, " ", -1);
 		}
 	}
+	else if (env->l == 1)
+		convgs(args, env);
 	else
 		ft_putinit(env, "(null)", -1);
 }
@@ -48,19 +50,24 @@ void			convc(va_list args, t_env *env)
 	s[0] = va_arg(args, int);
 
 	i = -1;
-	if (env->conv.neg == 1)
+	if (env->l == 0)
 	{
-		ft_putinit(env, (char *)s, 1);
-		while (++i < env->conv.champ - 1)
-			ft_putinit(env, " ", -1);
+		if (env->conv.neg == 1)
+		{
+			ft_putinit(env, (char *)s, 1);
+			while (++i < env->conv.champ - 1)
+				ft_putinit(env, " ", -1);
+		}
+		else
+		{
+			while (++i < env->conv.champ - 1)
+				ft_putinit(env, ((env->conv.zero == 1) ? "0" : " "), -1);
+			ft_putinit(env, (char *)s, 1);
+		}
+		env->weight = (s[0] == 0) ? env->weight + 1 : env->weight;
 	}
 	else
-	{
-		while (++i < env->conv.champ - 1)
-			ft_putinit(env, ((env->conv.zero == 1) ? "0" : " "), -1);
-		ft_putinit(env, (char *)s, 1);
-	}
-	env->weight = (s[0] == 0) ? env->weight + 1 : env->weight;
+		convgc(args, env);
 }
 
 static void			convoplus(t_env *env)
@@ -94,7 +101,7 @@ void			convo(va_list args, t_env *env)
 	int		i;
 
 	if (env->conv.conversion == 7)
-		ft_itoa_base(va_arg(args, unsigned int), 8, env->conv.nb);
+		convitoabase(args, env, 8);
 	i = ft_strlen(env->conv.nb) + env->conv.sharp;
 	if (env->conv.neg == 1)
 	{
