@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:33:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/14 11:48:16 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/14 15:11:43 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void		convxplus(t_env *env)
 	int	i;
 
 	i = ft_strlen(env->conv.nb) + ((env->conv.sharp == 1) ? 2 : 0);
+	if (env->conv.champ > 0 && env->conv.nb[0] == '0' && env->conv.precision == 0)
+		env->conv.champ++;
 	if (env->conv.sharp == 1 && env->conv.nb[0] != '0' && env->conv.zero == 1)
 		ft_putinit(env, (env->conv.conversion == 10) ? "0X" : "0x", -1);
 	while (i < env->conv.precision)

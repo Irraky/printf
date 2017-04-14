@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:58:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/14 11:49:17 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/14 15:02:43 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void			convd(va_list args, t_env *env)
 			ft_putinit(env, (env->conv.zero == 0) ? " " : "0", 1);
 		if (flag == 0)
 			ft_putinit(env, "-", 1);
+		if (env->conv.precision > 0 && env->conv.champ == -1)
+			env->conv.precision++;
 		while (env->conv.precision-- > (int)ft_strlen(env->conv.nb))
 			ft_putinit(env, "0", 1);
 		if (!( env->conv.nb[0] == '0' && env->conv.precision == 0))
