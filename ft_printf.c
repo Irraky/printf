@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/13 19:43:14 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/15 18:00:40 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ static void		ft_init_env(t_env *env)
 
 static void		destroy_env(t_env *env)
 {
-	env->weight += ft_strlen(env->buffer);
+	if (env->weight != -1)
+		env->weight += ft_strlen(env->buffer);
 }
 
 
@@ -88,7 +89,7 @@ int				ft_printf(const char *format, ...)
 	t_env		env;
 	va_list		args;
 	const tconv tabconv[] = {convgs, convs, convp, convgd, convd, convi, convgo,
-		convo, convgu, convu, convgx, convx, convgc, convc, convpercent, vide};
+		convo, convgu, convu, convgx, convx, convgc, convc, convpercent};
 
 	ft_init_env(&env);
 	va_start(args, format);
@@ -100,7 +101,8 @@ int				ft_printf(const char *format, ...)
 		if (format[env.indexstr] == '%')
 		{
 			get_data(&env, format);
-			tabconv[env.conv.conversion](args, &env);
+			if (env.conv.conversion != 15)
+				tabconv[env.conv.conversion](args, &env);
 			cleanit(&env);
 		}
 	}

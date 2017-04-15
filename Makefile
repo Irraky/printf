@@ -6,7 +6,7 @@
 #    By: drecours <drecours@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/27 14:12:36 by drecours          #+#    #+#              #
-#    Updated: 2017/04/13 18:29:45 by drecours         ###   ########.fr        #
+#    Updated: 2017/04/15 17:24:13 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC = ft_atoi.c \
 	  get_data.c \
 	  convert.c \
 	  flagspart1.c
+
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
