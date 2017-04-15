@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:33:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/15 14:24:41 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/15 14:30:02 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	convx(va_list args, t_env *env)
 
 	convitoabase(args, env, 16);
 	i = ft_strlen(env->conv.nb) + ((env->conv.sharp == 1) ? 2 : 0);
+	if (env->conv.champ > 0 && env->conv.precision == 0 && env->conv.nb[0] == '0')
+		env->conv.champ++;
 	if (env->conv.neg == 1)
 	{
 		if (env->conv.sharp == 1 && env->conv.nb[0] != '0')
