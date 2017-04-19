@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/15 18:00:40 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/19 17:21:40 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void		ft_init_env(t_env *env)
 	ft_bzero(&env->buffer, BUFF_SIZE);
 	ft_bzero(&env->conv.nb, 65);
 	ft_bzero(&env->conv.nbp, 65);
+	ft_bzero(&env->wchar, 5);
 	env->weight = 0;
 	env->conv.champ = 0;
 	env->conv.precision = -1;
@@ -70,6 +71,7 @@ void			cleanit(t_env *env)
 	env->conv.precision = -1;
 	ft_bzero(&env->conv.nb, 65);
 	ft_bzero(&env->conv.nbp, 65);
+	ft_bzero(&env->wchar, 5);
 	env->i = env->indexstr;
 	env->conv.neg = 0;
 	env->conv.zero = 0;

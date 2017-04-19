@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/15 17:23:56 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/19 17:21:13 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct			s_env
 	int						l;
 	int						ll;
 	int						z;
+	char					wchar[5];
 	t_conversion_pourcent	conv;
 }						t_env;
 
