@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/22 15:00:51 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/24 15:11:39 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void		ft_init_env(t_env *env)
 	ft_bzero(&env->buffer, BUFF_SIZE);
 	ft_bzero(&env->conv.nb, 65);
 	ft_bzero(&env->conv.nbp, 65);
-	ft_bzero(&env->wchar, 5);
 	env->weight = 0;
 	env->conv.champ = 0;
 	env->conv.precision = -1;
@@ -71,7 +70,6 @@ void			cleanit(t_env *env)
 	env->conv.precision = -1;
 	ft_bzero(&env->conv.nb, 65);
 	ft_bzero(&env->conv.nbp, 65);
-	ft_bzero(&env->wchar, 5);
 	env->i = env->indexstr;
 	env->conv.neg = 0;
 	env->conv.zero = 0;
@@ -102,7 +100,7 @@ int				ft_printf(const char *format, ...)
 		ft_putinit(&env, (char *)&format[env.i], env.indexstr - env.i);
 		if (format[env.indexstr] == '%')
 		{
-			get_data(&env, format);
+			get_data(&env, format, args);
 			if (env.conv.conversion != 15)
 				tabconv[env.conv.conversion](args, &env);
 			cleanit(&env);

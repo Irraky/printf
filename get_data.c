@@ -6,17 +6,18 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/22 15:01:00 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/24 15:06:59 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-static void		get_features(t_env *env, const char *format, int i)
+
+static void		get_features(t_env *env, const char *format, int i, va_list arg)
 {
 	env->indexstr = env->indexstr + i + 1;
-	getchamp(env, format);
-	getprecision(env, format);
+	getchamp(env, format, arg);
+	getprecision(env, format, arg);
 	littleflags(env, format);
 }
 
@@ -44,7 +45,7 @@ static int		get_conv(t_env *env, int j, int i, const char *format)
 	return (1);
 }
 
-void			get_data(t_env *env, const char *format)
+void			get_data(t_env *env, const char *format, va_list arg)
 {
 	int			i;
 	int			j;
@@ -57,14 +58,14 @@ void			get_data(t_env *env, const char *format)
 	{
 		while (conversions[++j])
 			if (format[env->indexstr + i] == conversions[j])
-				if (get_conv(env, j, i, format))
+				if (get_conv(env, j, i, format) == 1)
 					break ;
-		if (env->conv.conversion > 0)
+		if (env->conv.conversion >= 0)
 			break ;
 		j = -1;
 		i++;
 	}
 	if (env->conv.conversion == 15)
 		env->indexstr = env->indexstr + 1;
-	get_features(env, format, i);
+	get_features(env, format, i, arg);
 }

@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/22 15:01:54 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/24 15:06:54 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct			s_env
 
 int						ft_printf(const char *format, ...);
 void					ft_putinit(t_env *env, char *addit, int size);
-void					get_data(t_env *env, const char *format);
+void					get_data(t_env *env, const char *format, va_list conv);
 typedef void			(*tconv)(va_list arg, t_env *env);
 
 /*
@@ -83,8 +83,8 @@ void					convpercent(va_list arg, t_env *env);
 **FLAGS
 */
 
-void					getchamp(t_env *env, const char *format);
-void					getprecision(t_env *env, const char *format);
+void					getchamp(t_env *env, const char *format, va_list arg);
+void					getprecision(t_env *env, const char *format, va_list arg);
 void					littleflags(t_env *env, const char *format);
 
 /*
