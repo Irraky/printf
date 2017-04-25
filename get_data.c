@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/20 18:10:46 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/24 15:06:59 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/25 16:24:31 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 static void		get_features(t_env *env, const char *format, int i, va_list arg)
 {
-	env->indexstr = env->indexstr + i + 1;
+	if (env->conv.conversion != 15)
+		env->indexstr = env->indexstr + i + 1;
+	else 
+		env->indexstr += 1;
 	getchamp(env, format, arg);
 	getprecision(env, format, arg);
 	littleflags(env, format);
@@ -65,7 +68,9 @@ void			get_data(t_env *env, const char *format, va_list arg)
 		j = -1;
 		i++;
 	}
-	if (env->conv.conversion == 15)
-		env->indexstr = env->indexstr + 1;
+	if (env->conv.conversion == 15 || env->conv.conversion == -1)
+	{
+		env->conv.conversion = 15;
+	}
 	get_features(env, format, i, arg);
 }
