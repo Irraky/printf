@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/24 15:06:54 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/26 15:57:02 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef void			(*tconv)(va_list arg, t_env *env);
 */
 void					convitoa(va_list arg, t_env *env);
 void					convitoabase(va_list arg, t_env *env, int base);
+void					trick(wchar_t args, t_env *env);
 
 void					convgs(va_list arg, t_env *env);
 void					convs(va_list arg, t_env *env);

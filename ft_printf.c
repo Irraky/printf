@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/25 16:22:14 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/25 16:38:54 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int				ft_printf(const char *format, ...)
 		if (format[env.indexstr] == '%')
 		{
 			get_data(&env, format, args);
-			if (env.conv.conversion != 15 && env.conv.conversion != -1)
+			if (env.conv.conversion != 15)
 				tabconv[env.conv.conversion](args, &env);
 			cleanit(&env);
 		}

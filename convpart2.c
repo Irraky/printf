@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:54:51 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/13 22:16:55 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/26 16:25:17 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void			convs(va_list args, t_env *env)
 		}
 	}
 	else if (env->l == 1)
-		convgs(args, env);
+		while (*str)
+			trick(*str++, env);
 	else
 		ft_putinit(env, "(null)", -1);
 }
@@ -46,15 +47,15 @@ void			convs(va_list args, t_env *env)
 void			convc(va_list args, t_env *env)
 {
 	int		i;
-	char	s[2];
-	s[0] = va_arg(args, int);
+	wchar_t	 s;
+	s = va_arg(args, wchar_t);
 
 	i = -1;
-	if (env->l == 0)
+	if (s)
 	{
 		if (env->conv.neg == 1)
 		{
-			ft_putinit(env, (char *)s, 1);
+			trick(s, env);
 			while (++i < env->conv.champ - 1)
 				ft_putinit(env, " ", -1);
 		}
@@ -62,12 +63,11 @@ void			convc(va_list args, t_env *env)
 		{
 			while (++i < env->conv.champ - 1)
 				ft_putinit(env, ((env->conv.zero == 1) ? "0" : " "), -1);
-			ft_putinit(env, (char *)s, 1);
+			trick(s, env);
 		}
-		env->weight = (s[0] == 0) ? env->weight + 1 : env->weight;
 	}
 	else
-		convgc(args, env);
+		env->weight += 1;
 }
 
 static void			convoplus(t_env *env)
