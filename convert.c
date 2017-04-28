@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 15:02:52 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/26 18:01:50 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/26 18:05:10 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ void	convitoabase(va_list args, t_env *env, int base)
 	else
 		ft_itoa_base(va_arg(args, unsigned int), base, env->conv.nbp);
 	while (env->conv.nbp[++i])
-		if (env->conv.nbp[i] <= 'z' && env->conv.nbp[i] >= 'a' &&
+	{if (env->conv.nbp[i] <= 'z' && env->conv.nbp[i] >= 'a' &&
 				env->conv.conversion == 10)
 			env->conv.nb[i] = env->conv.nbp[i] - 32;
 		else
 			env->conv.nb[i] = env->conv.nbp[i];
+	}
 }
 
 void	convitoa(va_list args, t_env *env)

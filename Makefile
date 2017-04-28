@@ -6,7 +6,7 @@
 #    By: drecours <drecours@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/27 14:12:36 by drecours          #+#    #+#              #
-#    Updated: 2017/04/15 17:24:13 by drecours         ###   ########.fr        #
+#    Updated: 2017/04/28 11:52:09 by drecours         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ SRC = ft_atoi.c \
 	  ft_putendl.c \
 	  ft_putstr.c \
 	  ft_strlen.c \
+	  ft_wstrlen.c \
 	  ft_tolower.c \
 	  ft_itoa.c \
 	  ft_ilen.c \
@@ -26,6 +27,7 @@ SRC = ft_atoi.c \
 	  ft_putendl_fd.c \
 	  ft_printf.c \
 	  ft_itoa_base.c \
+	  ft_wcsize.c \
 	  ft_exit.c \
 	  convpart1.c \
 	  convpart2.c \

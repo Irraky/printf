@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/26 15:57:02 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/28 13:42:37 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void					littleflags(t_env *env, const char *format);
 /*
 **LIBFT
 */
+int						ft_wcsize(wchar_t c);
+int						ft_wstrlen(const wchar_t *s);
 int						ft_atoi(const char *str);
 int						ft_isdigit(int c);
 void					ft_bzero(void *s, size_t n);

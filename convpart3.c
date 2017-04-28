@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 17:06:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/26 16:06:15 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/28 16:24:38 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,65 @@ void			trick(wchar_t args, t_env *env)
 	if (env->wchar[0] != '\0')
 		ft_putinit(env, env->wchar, -1);
 	env->weight = (MB_CUR_MAX == 1 && args > 255) ? -1 : env->weight;
-}
-
-void			convgc(va_list arg, t_env *env)
-{
-	convc(arg, env);
-}
-
-void			convgs(va_list args, t_env *env)
-{
-	const wchar_t *s = va_arg(args, wchar_t *);
 	
-	if (s == (wchar_t *)NULL)
+}
+
+void			convc(va_list arg, t_env *env)
+{
+	convgc(arg, env);
+}
+
+void			convs(va_list args, t_env *env)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	if (env->l == 1)
+		convgs(args, env);
+	else
+		str = va_arg(args, char *);
+	if (env->l == 0 && !str)
 		ft_putinit(env, "(null)", -1);
-	if (s)
+	else if (env->l == 0 && str)
 	{
-		while (*s)
-			trick(*s++, env);
-		return ;
+		j = -1;
+		i = (env->conv.precision > (int)ft_strlen(str)) ? (env->conv.champ -
+				(int)ft_strlen(str)) : (env->conv.champ - env->conv.precision);
+		i = (env->conv.precision < 0) ? env->conv.champ - ft_strlen(str) : i;
+		if (env->conv.neg == 1)
+		{
+			ft_putinit(env, (char *)str, (env->conv.precision != -1) ?
+					env->conv.precision : (int)ft_strlen(str));
+			while (++j < i)
+				ft_putinit(env, " ", -1);
+		}
+		else
+		{
+			while (++j < i)
+				ft_putinit(env, ((env->conv.zero == 1) ? "0" : " "), -1);
+			ft_putinit(env, (char *)str, (env->conv.precision != -1) ?
+					env->conv.precision : (int)ft_strlen(str));
+		}
+	}
+}
+
+void			convpercent(va_list args, t_env *env)
+{
+	int	i;
+
+	(void)args;
+	i = -1;
+	if (env->conv.neg == 1)
+	{
+		ft_putinit(env, "%", -1);
+		while (++i < env->conv.champ - 1)
+			ft_putinit(env, " ", -1);
+	}
+	else
+	{
+		while (++i < env->conv.champ - 1)
+			ft_putinit(env, ((env->conv.zero == 1) ? "0" : " "), -1);
+		ft_putinit(env, "%", -1);
 	}
 }
