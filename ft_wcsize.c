@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 11:43:48 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/28 11:47:23 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/29 12:50:14 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libftprintf.h"
@@ -21,5 +21,5 @@ int		ft_wcsize(wchar_t c)
 		return (3);
 	else if ((unsigned)c - 0x10000 < 0x100000)
 		return (4);
-	return (0);
+	return (1);
 }

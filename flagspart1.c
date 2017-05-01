@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 18:25:00 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/26 15:43:39 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/29 13:08:14 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,19 @@
 
 static	void	wildcard(t_env *env, va_list arg, const char *format)
 {
+	int		i;
+
 	if (format[env->i + 1] == '*')
-		env->conv.champ = va_arg(arg, int);
+	{	
+		i = va_arg(arg, int);
+		if (i >= 0)
+			env->conv.champ = i;
+		else
+		{
+			env->conv.champ = -i;
+			env->conv.neg = 1;
+		}
+	}
 }
 void			getchamp(t_env *env, const char *format, va_list arg)
 {

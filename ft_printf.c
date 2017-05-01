@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/25 16:38:54 by drecours         ###   ########.fr       */
+/*   Updated: 2017/04/29 13:27:37 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 void		ft_putinit(t_env *env, char *addit, int size)
 {
 	int		i;
+	int		j;
 
 	i = -1;
-	while (addit[++i] && (i < size || size == -1))
+	j = 0;
+	while ((addit[++i] &&  size == -1) || i < size)
 	{
 		env->buffer[env->indexbuff] = addit[i];
 		if (env->indexbuff++ >= BUFF_SIZE)
 		{
 			env->weight += 1024;
-			ft_putstr((char const *)env->buffer);
+			write(1, env->buffer, 1024);
 			ft_bzero(&env->buffer, BUFF_SIZE);
 			env->indexbuff = 0;
 		}
@@ -107,7 +109,7 @@ int				ft_printf(const char *format, ...)
 		}
 	}
 	destroy_env(&env);
-	ft_putstr(env.buffer);
+	write(1, env.buffer, env.indexbuff);
 	va_end(args);
 	return (env.weight);
 }

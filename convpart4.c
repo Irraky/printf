@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:33:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/15 14:30:02 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/01 16:25:28 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,25 @@ void	convgx(va_list args, t_env *env)
 
 void            convp(va_list args, t_env *env)
 {
-	ft_putinit(env, "0x", -1);
+	int		i;
+
+	i = 0;
+	while (env->conv.champ > i && env->conv.neg == 0)
+	{
+		if (env->conv.zero == 1)
+			ft_putinit(env, "0", -1);
+		else
+			ft_putinit(env, " ", -1);
+		env->conv.champ--;
+	}
 	ft_itoa_base(va_arg(args, long long int), 16, env->conv.nb);
-	ft_putinit(env, env->conv.nb, -1);
+	ft_putinit(env, "0x", -1);
+	while ((i++ < env->conv.precision - 12 && env->conv.nb[0] != '0') ||
+			(env->conv.nb[0] == '0' && i < env->conv.precision - 2))
+		ft_putinit(env, "0", 1);
+	ft_putinit(env, env->conv.nb, (env->conv.precision != -1) ?
+			env->conv.precision -2: -1);
+	while (env->conv.neg == 1 && --env->conv.champ > 12)
+		ft_putinit(env, " ", 1);
+
 }

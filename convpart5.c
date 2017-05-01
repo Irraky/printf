@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:58:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/14 15:02:43 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/01 18:01:47 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,11 @@ void			convd(va_list args, t_env *env)
 
 void			convgd(va_list args, t_env *env)
 {
+	env->l = 1;
 	convd(args, env);
 }
 
 void			convi(va_list args, t_env *env)
 {
 	convd(args, env);
-}
-
-void			convgo(va_list args, t_env *env)
-{
-	ft_itoa_base(va_arg(args, long int), 8, env->conv.nb);
-	convo(args, env);
 }

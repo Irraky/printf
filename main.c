@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 13:56:22 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/28 17:39:58 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/01 17:54:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 
 int		main(void)
 {
-	int	i;
 
-	i = 1;
+	
 	setlocale(LC_ALL, "en_US.UTF-8");
 //	ft_printf("%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S%S\n", L"Α α", L"Β β", L"Γ γ", L"Δ δ", L"Ε ε", 
 //			L"Ζ ζ", L"Η η", L"Θ θ", L"Ι ι", L"Κ κ", L"Λ λ", L"Μ μ", L"Ν ν", L"Ξ ξ", L"Ο ο", L"Π π", L"Ρ ρ", L"Σ σ", L"Τ τ", L"Υ υ", L"Φ φ", L"Χ χ", L"Ψ ψ", L"Ω ω", L"");
@@ -42,11 +41,19 @@ int		main(void)
 	//ft_printf("{%*s}", "test", 0);
 	//printf("{%3*d}", 0, 0);
 	//printf("pf: %d\n", printf("{%3c}\n", 0));
-	//ft_printf("pf: %d\n", printf("{%3c}\n", 0));
-	//printf("pf: %d\n", ft_printf("%c", 201));
-	//printf("pf: %d\n", printf("%c", 201));
-	  printf("{%3c}", 0);
-      ft_printf("{%3c}", 0);
+	//ft_printf("pf: %d\n", printf("% z", 0));
+	//printf("ipf: %d\n", ft_printf("%.5p", &i));
+	//printf("pf: %d\n", printf("%p", (void *)0));
+	//printf("{%*d}", -5, 42);
+	//ft_printf("i{%*d}", -5, 42);
+	///printf("{%c}", '\0');
+      //ft_printf("{%c}", "\0");
+	  //printf("|%.0p|, |%.p|\n", 0, 0);
+	//ft_printf("|%10p|, |%5p|", &i, &i);
+	//printf("%15.4S\n", L"我是一只猫。");
+	//printf("%-12p", &i);
+	printf("|%ld|\n", (long)INT_MAX + 1);
+	ft_printf("|%ld|", (long)INT_MAX + 1);
 
 	return 0;
 }
