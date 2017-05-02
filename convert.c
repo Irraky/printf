@@ -6,12 +6,12 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/13 15:02:52 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/01 18:08:54 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:54:51 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <unistd.h>
+#include <stdio.h>
 
 void	convitoabase(va_list args, t_env *env, int base)
 {
@@ -44,21 +44,21 @@ void	convitoabase(va_list args, t_env *env, int base)
 
 void	convitoa(va_list args, t_env *env)
 {
-	if (env->ll == 1)
-		ft_itoa(va_arg(args, long long), env->conv.nb);
-	else if (env->l == 1)
-	{
-		ft_itoa(va_arg(args, long), env->conv.nb);
-		write(1, env->conv.nb, 13);
-	}
+	long long d;
+	
+	d = va_arg(args, long long);
+	if (env->l == 1)
+		ft_itoa((long)d , env->conv.nb);
+	else if (env->ll == 1)
+		ft_itoa((long long)d, env->conv.nb);
 	else if (env->hh == 1)
-		ft_itoa((char)(va_arg(args, long long)), env->conv.nb);
+		ft_itoa((char)d, env->conv.nb);
 	else if (env->h == 1)
-		ft_itoa((short)(va_arg(args, long long)), env->conv.nb);
+		ft_itoa((short)d, env->conv.nb);
 	else if (env->j == 1)
-		ft_itoa(va_arg(args, long), env->conv.nb);
+		ft_itoa((long)d, env->conv.nb);
 	else if (env->z == 1)
-		ft_itoa(va_arg(args, long),  env->conv.nb);
+		ft_itoa((long)d,  env->conv.nb);
 	else
-		ft_itoa(va_arg(args, int), env->conv.nb);
+		ft_itoa((int)d, env->conv.nb);
 }

@@ -6,19 +6,19 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/04 15:34:26 by drecours          #+#    #+#             */
-/*   Updated: 2017/03/27 13:44:59 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:53:03 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-int		ft_ilen(int n)
+int		ft_ilen(long long n)
 {
 	int		i;
 
-	if (n == -2147483648)
-		return (11);
-	if (n == 0 || n == +0 || n == -0)
+	if (n == -9223372036854775807 - 1)
+		return (20);
+	if (n == 0)
 		return (1);
 	i = (n < 0) ? 1 : 0;
 	n = (n < 0) ? -n : n;

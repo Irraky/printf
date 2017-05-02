@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/28 13:42:37 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:52:48 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int						ft_atoi(const char *str);
 int						ft_isdigit(int c);
 void					ft_bzero(void *s, size_t n);
 void					ft_exit(char *s, int status);
-int						ft_ilen(int n);
+int						ft_ilen(long long n);
 void					ft_itoa(long long n, char *nb);
 void					ft_itoa_base(unsigned long long num, unsigned long long
 						base, char *nb);

@@ -6,10 +6,11 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 04:15:21 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/26 17:58:57 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/02 15:54:10 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libftprintf.h"
 
 void	ft_itoa(long long n, char *nb)
