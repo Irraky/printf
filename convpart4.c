@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:33:19 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/02 14:44:09 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/02 16:26:25 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void            convp(va_list args, t_env *env)
 			ft_putinit(env, " ", -1);
 	if (env->conv.zero == 0)
 		ft_putinit(env, "0x", -1);
-	i = (env->conv.nb[0] == '0') ? 0 :ft_strlen(env->conv.nb);
+	i = (env->conv.nb[0] == '0') ? 0 : ft_strlen(env->conv.nb);
 	while ((i < env->conv.precision && env->conv.nb[0] != '0') ||
 			(env->conv.nb[0] == '0' && i < env->conv.precision))
 	{
@@ -90,6 +90,8 @@ void            convp(va_list args, t_env *env)
 	}
 	if (!(env->conv.nb[0] == '0' && env->conv.precision >= 0))
 		ft_putinit(env, env->conv.nb, -1);
-	while (env->conv.neg == 1 && --env->conv.champ > 10)
+	i = ft_strlen(env->conv.nb);
+	i = (env->conv.precision > i) ? env->conv.precision : i;
+	while (env->conv.neg == 1 && --env->conv.champ > i)
 		ft_putinit(env, " ", 1);
 }

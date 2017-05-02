@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 13:56:22 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/02 14:51:04 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/02 16:00:31 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ int		main(void)
 	//ft_printf("|%10p|, |%5p|", &i, &i);
 	//printf("%15.4S\n", L"我是一只猫。");
 	//printf("%p\n", (void *)0);
-	//ft_printf("%p", (void *)0);
-	printf("|%ld|\n", (long)INT_MAX + 1);
-	ft_printf("|%ld|", (long)INT_MAX + 1);
+	printf("%hhC, %hhC", 0, L'米');
+	//printf("|%ld|\n", (long)INT_MAX + 1);
+	//ft_printf("|%ld|", (long)INT_MAX + 1);
 
 	return 0;
 }
