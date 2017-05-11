@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 13:56:22 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/11 15:15:44 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/11 17:04:51 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int		main(void)
 	//printf("pf: %d\n", printf("%p", (void *)0));
 	//printf("{%*d}", -5, 42);
 	//ft_printf("i{%*d}", -5, 42);
-	printf("%d", ft_printf("{%3cii}", 0));
-	printf("%d", printf("{%3cii}", 0));
+	printf("%d\n", ft_printf("{%+03d}",  0));
+	printf("%d", printf("{%+03d}",  0));
       //ft_printf("{%c}", "\0");
 	  //printf("|%.0p|, |%.p|\n", 0, 0);
 	//ft_printf("|%10p|, |%5p|", &i, &i);

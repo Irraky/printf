@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 17:06:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/11 14:30:07 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/11 16:36:51 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void			convs(va_list args, t_env *env)
 		i = (env->conv.precision < 0) ? env->conv.champ - ft_strlen(str) : i;
 		if (env->conv.neg == 1)
 		{
-			ft_putinit(env, (char *)str, (env->conv.precision != -1) ?
+			ft_putinit(env, (char *)str, (env->conv.precision != -1 && env->conv.precision < (int)ft_strlen(str)) ?
 					env->conv.precision : (int)ft_strlen(str));
 			while (++j < i)
 				ft_putinit(env, " ", -1);
@@ -78,7 +78,7 @@ void			convs(va_list args, t_env *env)
 		{
 			while (++j < i)
 				ft_putinit(env, ((env->conv.zero == 1) ? "0" : " "), -1);
-			ft_putinit(env, (char *)str, (env->conv.precision != -1) ?
+			ft_putinit(env, (char *)str, (env->conv.precision != -1 && env->conv.precision < (int)ft_strlen(str)) ?
 					env->conv.precision : (int)ft_strlen(str));
 		}
 	}

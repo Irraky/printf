@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:54:51 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/11 15:34:00 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/11 16:33:46 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ static int		lgs(t_env *env, const wchar_t *str)
 void			convgs(va_list args, t_env *env)
 {
 	const wchar_t		*str = va_arg(args, wchar_t *);
-	int			i;
-	int			j;
+	int					i;
+	int					j;
 
 	if (str == (wchar_t *)NULL)
 		ft_putinit(env, "(null)", -1);
