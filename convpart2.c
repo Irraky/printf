@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:54:51 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/01 14:19:45 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/11 15:34:00 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ void			convgc(va_list args, t_env *env)
 	const int	j = ft_wcsize(s);
 
 	i = -1;
-	if (s == 0 && env->conv.champ != -1 && env->conv.zero == 1)
-		env->conv.champ++;
 	if (env->conv.neg == 1)
 	{
 		trick(s, env);
@@ -89,6 +87,4 @@ void			convgc(va_list args, t_env *env)
 			ft_putinit(env, ((env->conv.zero == 1) ? "0" : " "), -1);
 		trick(s, env);
 	}
-	if (s == (wchar_t)0)
-		env->weight++;
 }

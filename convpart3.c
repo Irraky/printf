@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 17:06:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/28 16:24:38 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/11 14:30:07 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ void			trick(wchar_t args, t_env *env)
 		env->wchar[2] = (((args >> 6) & 0x3F) + 0x80);
 		env->wchar[3] = ((args & 0x3F) + 0x80);
 	}
-	if (env->wchar[0] != '\0')
-		ft_putinit(env, env->wchar, -1);
+	ft_putinit(env, env->wchar, -1);
+	if (!env->wchar[0])
+		ft_putinit(env, "\0", 1);
 	env->weight = (MB_CUR_MAX == 1 && args > 255) ? -1 : env->weight;
-	
 }
 
 void			convc(va_list arg, t_env *env)

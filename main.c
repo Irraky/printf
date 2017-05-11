@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 13:56:22 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/02 16:00:31 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/11 15:15:44 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,14 @@ int		main(void)
 	//printf("pf: %d\n", printf("%p", (void *)0));
 	//printf("{%*d}", -5, 42);
 	//ft_printf("i{%*d}", -5, 42);
-	///printf("{%c}", '\0');
+	printf("%d", ft_printf("{%3cii}", 0));
+	printf("%d", printf("{%3cii}", 0));
       //ft_printf("{%c}", "\0");
 	  //printf("|%.0p|, |%.p|\n", 0, 0);
 	//ft_printf("|%10p|, |%5p|", &i, &i);
 	//printf("%15.4S\n", L"我是一只猫。");
 	//printf("%p\n", (void *)0);
-	printf("%hhC, %hhC", 0, L'米');
+	//printf("%hhC, %hhC", 0, L'米');
 	//printf("|%ld|\n", (long)INT_MAX + 1);
 	//ft_printf("|%ld|", (long)INT_MAX + 1);
 
