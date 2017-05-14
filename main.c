@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 13:56:22 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/11 18:13:33 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/14 18:40:18 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,25 @@ int		main(void)
 	//printf("pf: %d\n", printf("%p", (void *)0));
 	//printf("{%*d}", -5, 42);
 	//ft_printf("i{%*d}", -5, 42);
-	printf("%d\n", ft_printf("{%+7.5d}",  -5));
-	printf("%d", printf("{%+7.5d}",  -5));
-      //ft_printf("{%c}", "\0");
+	/*printf("%d\n", ft_printf("%10d",  42));
+	printf("%d\n", printf("%10d",  42));
+	printf("%d\n", ft_printf("%10d",  -42));
+	printf("%d\n", printf("%10d",  -42));
+	printf("%d\n", ft_printf("%+10d",  42));
+	printf("%d\n", printf("%+10d",  42));
+	printf("%d\n", ft_printf("%-10d",  42));
+	printf("%d\n", printf("%-10d",  42));*/
+	printf("%d\n", ft_printf("%-+15.4d",  -42));
+	printf("%d\n", printf("%-+15.4d",  -42));
+	printf("%d\n", ft_printf("%-+15.4d",  42));
+	printf("%d\n", printf("%-+15.4d",  42));
+	/*printf("%d\n", ft_printf("f%03.2d",  0));
+	printf("%d\n", printf("p%03.2d",  0));
+	printf("%d\n", ft_printf("f%04.2d",  0));
+	printf("%d\n", printf("p%04.2d",  0));
+	printf("%d\n", ft_printf("f%4d",  0));
+	printf("%d", printf("p%4d",  0));*/
+      //ft_printf("{%c}", "\0";
 	  //printf("|%.0p|, |%.p|\n", 0, 0);
 	//ft_printf("|%10p|, |%5p|", &i, &i);
 	//printf("%15.4S\n", L"我是一只猫。");
