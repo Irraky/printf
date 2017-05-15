@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 17:06:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/11 16:36:51 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/15 17:44:04 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,19 @@ void			convc(va_list arg, t_env *env)
 void			convs(va_list args, t_env *env)
 {
 	char	*str;
+	char	*null;
 	int		i;
 	int		j;
 
 	if (env->l == 1)
+	{
+		null = NULL;
 		convgs(args, env);
+	}
 	else
-		str = va_arg(args, char *);
-	if (env->l == 0 && !str)
-		ft_putinit(env, "(null)", -1);
-	else if (env->l == 0 && str)
+		null = va_arg(args, char *);
+	str = (!null && env->l == 0) ? "(null)" : null;
+	if (env->l == 0 && str)
 	{
 		j = -1;
 		i = (env->conv.precision > (int)ft_strlen(str)) ? (env->conv.champ -

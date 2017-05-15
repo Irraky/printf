@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 13:56:22 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/15 16:53:15 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/15 17:43:40 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ int		main(void)
 	//printf("%hhC, %hhC", 0, L'米');
 	//printf("|%ld|\n", (long)INT_MAX + 1);
 	//ft_printf("|%ld|", (long)INT_MAX + 1);
-	printf("%5.s\n", (char*)0);
-	ft_printf("%5.s\n", (char*)0);
+	ft_printf("%.5s\n", "asdfghj");
+	printf("%.5s\n", "asdfghj");
 
 	return 0;
 }
