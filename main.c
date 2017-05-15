@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/14 13:56:22 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/14 18:40:18 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/15 16:53:15 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,30 @@ int		main(void)
 	printf("%d\n", printf("%10d",  -42));
 	printf("%d\n", ft_printf("%+10d",  42));
 	printf("%d\n", printf("%+10d",  42));
-	printf("%d\n", ft_printf("%-10d",  42));
-	printf("%d\n", printf("%-10d",  42));*/
-	printf("%d\n", ft_printf("%-+15.4d",  -42));
+	printf("%d\n", ft_printf("% 03d",  0));
+	printf("%d\n", printf("% 03d",  0));
+	printf("%d\n", ft_printf("%+3d",  0));
+	printf("%d\n", printf("%+3d",  0));
+	printf("%d\n", ft_printf("%+d",  0));
+	printf("%d\n", printf("%+d",  0));
+	printf("%d\n", ft_printf("%-+15.4d", -42));
 	printf("%d\n", printf("%-+15.4d",  -42));
-	printf("%d\n", ft_printf("%-+15.4d",  42));
-	printf("%d\n", printf("%-+15.4d",  42));
-	/*printf("%d\n", ft_printf("f%03.2d",  0));
+	printf("ICI %d\n", ft_printf("%15.4d",  -42));
+	printf("ICI %d\n", printf("%15.4d",  -42));
+	printf("%d\n", ft_printf("f%03.2d",  0));
 	printf("%d\n", printf("p%03.2d",  0));
 	printf("%d\n", ft_printf("f%04.2d",  0));
 	printf("%d\n", printf("p%04.2d",  0));
 	printf("%d\n", ft_printf("f%4d",  0));
-	printf("%d", printf("p%4d",  0));*/
+	printf("%d\n", printf("p%4d",  0));
+	printf("%d\n", ft_printf("%15.4d",  -424242));
+	printf("%d\n", printf("%15.4d",  -424242));
+	printf("%d\n", ft_printf("%-15.4d",  -42252));
+	printf("%d\n", printf("%-15.4d",  -42252));
+	printf("%d\n", ft_printf("%15.4d",  -42));
+	printf("%d\n", printf("%15.4d",  -42));*/
+	//printf("%d\n", ft_printf("%.u",  0));
+	//printf("%d\n", printf("%.u",  0));
       //ft_printf("{%c}", "\0";
 	  //printf("|%.0p|, |%.p|\n", 0, 0);
 	//ft_printf("|%10p|, |%5p|", &i, &i);
@@ -72,6 +84,8 @@ int		main(void)
 	//printf("%hhC, %hhC", 0, L'米');
 	//printf("|%ld|\n", (long)INT_MAX + 1);
 	//ft_printf("|%ld|", (long)INT_MAX + 1);
+	printf("%5.s\n", (char*)0);
+	ft_printf("%5.s\n", (char*)0);
 
 	return 0;
 }

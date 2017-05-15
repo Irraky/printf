@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/22 14:36:48 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/26 14:30:46 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/15 16:47:18 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void		convuplus(t_env *env)
 	i = ft_strlen(env->conv.nb);
 	while (i++ < env->conv.precision)
 		ft_putinit(env, "0", -1);
-	if (!( env->conv.nb[0] == '0' && env->conv.precision < -1))
+	if (!( env->conv.nb[0] == '0' && env->conv.precision == 0))
 		ft_putinit(env, env->conv.nb, -1);
 }
 
