@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 14:15:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/01 14:23:18 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 12:21:04 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void		convoplus(t_env *env)
 			ft_putinit(env, " ", -1);
 		env->conv.champ--;
 	}
-	i = ft_strlen(env->conv.nb);
+	i = ft_strlen(env->conv.nb) + env->conv.sharp;
 	if (env->conv.sharp == 1)
 		ft_putinit(env, "0", -1);
 	while (i++ < env->conv.precision)
