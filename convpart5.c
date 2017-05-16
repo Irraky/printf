@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/06 13:58:06 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/15 16:40:03 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:20:28 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,19 @@ int static		first_flags_d(t_env *env, int max, int lg)
 
 	flag = 0;
 	i = 0;
-	if ((env->conv.nb[0] == '0' && (env->conv.plus == 1 || env->conv.space == 1)
-				) || (env->conv.nb[0] == '-' && lg < env->conv.precision))
+	if ((env->conv.nb[0] == '0' && env->conv.plus == 1 && env->conv.champ == 0)
+			|| (env->conv.space == 1 && env->conv.precision > 0) ||
+			(env->conv.nb[0] == '-' && lg <= env->conv.precision))
 	flag = 1;
 	if (env->conv.zero == 1)
 		ft_flags(env);
+	if (env->conv.plus == 1 && env->conv.precision > 0)
+		flag = 1;
 	while (env->conv.neg == 0 && env->conv.champ-- > max + flag)
 		ft_putinit(env, (env->conv.zero == 1) ? "0" : "  ", 1);
 	if (env->conv.zero == 0)
 		ft_flags(env);
-	if (env->conv.nb[0] == '-' && env->conv.precision > -1)
+	if (env->conv.plus == 1 || env->conv.space == 1)
 		flag = 1;
 	while (env->conv.precision - i++ > lg - flag)
 		ft_putinit(env, "0", 1);
@@ -55,9 +58,9 @@ void			convd(va_list args, t_env *env)
 	lg = (int)ft_strlen(env->conv.nb);
 	if (env->conv.nb[0] != '-' && (env->conv.plus == 1 || env->conv.space == 1))
 		lg++;
-	if (env->conv.nb[0] == '0' && env->conv.precision > -1)
+	if (env->conv.precision > -1)
 		env->conv.zero = 0;
-	if (env->conv.nb[0] == '0' && env->conv.precision == -1 && (env->conv.plus == 1 || env->conv.space == 1))
+	if (env->conv.nb[0] == '0' && env->conv.precision == 0  && env->conv.champ > 0)
 		env->conv.champ++;
 	max = (env->conv.precision > lg) ? env->conv.precision : lg;
 	flag = first_flags_d(env, max, lg);
