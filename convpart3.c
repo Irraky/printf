@@ -6,12 +6,11 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 17:06:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/16 14:47:25 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 17:09:26 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-
 
 void			trick(wchar_t args, t_env *env)
 {
@@ -57,15 +56,42 @@ void			convc(va_list arg, t_env *env)
 		if (env->conv.neg == 1)
 		{
 			ft_putinit(env, (!c) ? "\0" : s, 1);
-			while (++i < env->conv.champ -1)
+			while (++i < env->conv.champ - 1)
 				ft_putinit(env, " ", 1);
 		}
 		else
 		{
-			while (++i < env->conv.champ-1)
-				ft_putinit(env, (env->conv.zero == 1)? "0" : " ", -1);
+			while (++i < env->conv.champ - 1)
+				ft_putinit(env, (env->conv.zero == 1) ? "0" : " ", -1);
 			ft_putinit(env, (!c) ? "\0" : s, 1);
 		}
+	}
+}
+
+static void		tricks(t_env *env, char *str)
+{
+	int		i;
+	int		j;
+
+	j = -1;
+	i = (env->conv.precision > (int)ft_strlen(str)) ? (env->conv.champ -
+			(int)ft_strlen(str)) : (env->conv.champ - env->conv.precision);
+	i = (env->conv.precision < 0) ? env->conv.champ - ft_strlen(str) : i;
+	if (env->conv.neg == 1)
+	{
+		ft_putinit(env, (char *)str, (env->conv.precision != -1 &&
+					env->conv.precision < (int)ft_strlen(str)) ?
+				env->conv.precision : (int)ft_strlen(str));
+		while (++j < i)
+			ft_putinit(env, " ", -1);
+	}
+	else
+	{
+		while (++j < i)
+			ft_putinit(env, ((env->conv.zero == 1) ? "0" : " "), -1);
+		ft_putinit(env, (char *)str, (env->conv.precision != -1 &&
+					env->conv.precision < (int)ft_strlen(str)) ?
+				env->conv.precision : (int)ft_strlen(str));
 	}
 }
 
@@ -73,8 +99,6 @@ void			convs(va_list args, t_env *env)
 {
 	char	*str;
 	char	*null;
-	int		i;
-	int		j;
 
 	if (env->l == 1)
 	{
@@ -85,26 +109,7 @@ void			convs(va_list args, t_env *env)
 		null = va_arg(args, char *);
 	str = (!null && env->l == 0) ? "(null)" : null;
 	if (env->l == 0 && str)
-	{
-		j = -1;
-		i = (env->conv.precision > (int)ft_strlen(str)) ? (env->conv.champ -
-				(int)ft_strlen(str)) : (env->conv.champ - env->conv.precision);
-		i = (env->conv.precision < 0) ? env->conv.champ - ft_strlen(str) : i;
-		if (env->conv.neg == 1)
-		{
-			ft_putinit(env, (char *)str, (env->conv.precision != -1 && env->conv.precision < (int)ft_strlen(str)) ?
-					env->conv.precision : (int)ft_strlen(str));
-			while (++j < i)
-				ft_putinit(env, " ", -1);
-		}
-		else
-		{
-			while (++j < i)
-				ft_putinit(env, ((env->conv.zero == 1) ? "0" : " "), -1);
-			ft_putinit(env, (char *)str, (env->conv.precision != -1 && env->conv.precision < (int)ft_strlen(str)) ?
-					env->conv.precision : (int)ft_strlen(str));
-		}
-	}
+		tricks(env, str);
 }
 
 void			convpercent(va_list args, t_env *env)

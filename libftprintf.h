@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   libftprintf.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
+/*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/13 11:01:02 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/02 15:52:48 by drecours         ###   ########.fr       */
+/*   Created: 2017/05/16 16:44:23 by drecours          #+#    #+#             */
+/*   Updated: 2017/05/16 16:52:35 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#ifndef LIBFTPRINTF_H
+# define LIBFTPRINTF_H
 
-#include <string.h>
-#include <stdarg.h>
-#include <unistd.h>
-#include <stdlib.h>
+# include <string.h>
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdlib.h>
 
 # define ERROR -1
 # define BUFF_SIZE 1024
@@ -55,7 +55,7 @@ typedef struct			s_env
 int						ft_printf(const char *format, ...);
 void					ft_putinit(t_env *env, char *addit, int size);
 void					get_data(t_env *env, const char *format, va_list conv);
-typedef void			(*tconv)(va_list arg, t_env *env);
+typedef void			(*t_con)(va_list arg, t_env *env);
 
 /*
 **CONVERSIONS
@@ -85,7 +85,8 @@ void					convpercent(va_list arg, t_env *env);
 */
 
 void					getchamp(t_env *env, const char *format, va_list arg);
-void					getprecision(t_env *env, const char *format, va_list arg);
+void					getprecision(t_env *env, const char *format,
+						va_list arg);
 void					littleflags(t_env *env, const char *format);
 
 /*

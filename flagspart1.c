@@ -6,19 +6,18 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/27 18:25:00 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/29 13:08:14 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:58:05 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <stdio.h>
 
 static	void	wildcard(t_env *env, va_list arg, const char *format)
 {
 	int		i;
 
 	if (format[env->i + 1] == '*')
-	{	
+	{
 		i = va_arg(arg, int);
 		if (i >= 0)
 			env->conv.champ = i;
@@ -29,6 +28,7 @@ static	void	wildcard(t_env *env, va_list arg, const char *format)
 		}
 	}
 }
+
 void			getchamp(t_env *env, const char *format, va_list arg)
 {
 	int		add;
@@ -40,10 +40,6 @@ void			getchamp(t_env *env, const char *format, va_list arg)
 	wildcard(env, arg, format);
 	while (env->i + add < env->indexstr - 1 && format[env->i + add] != '.')
 	{
-		if (format[env->i + add] == '-')
-			env->conv.neg = 1;
-		if (format[env->i + add] == '0')
-			env->conv.zero = 1;
 		if (ft_isdigit(format[env->i + add]) && format[env->i + add] != '0')
 		{
 			while (ft_isdigit(format[env->i + add]))
@@ -52,10 +48,13 @@ void			getchamp(t_env *env, const char *format, va_list arg)
 				add++;
 			}
 			transit[place + 1] = '\0';
-			env->conv.champ = ft_atoi(transit);
+			if (format[env->i + add] != '*')
+				env->conv.champ = ft_atoi(transit);
+			else
+				wildcard(env, arg, &format[env->i + add]);
 			break ;
 		}
-		add ++;
+		add++;
 	}
 }
 
@@ -81,9 +80,8 @@ void			getprecision(t_env *env, const char *format, va_list arg)
 			if (env->conv.precision == -1)
 				env->conv.precision = ft_atoi(transit);
 			break ;
-			
 		}
-		add ++;
+		add++;
 	}
 }
 
@@ -93,13 +91,20 @@ void			littleflags(t_env *env, const char *format)
 
 	var = 0;
 	while (env->i + var < env->indexstr - 1)
-		{
-			if (format[env->i + var] == ' ')
-				env->conv.space = 1;
-			if (format[env->i + var] == '#')
-				env->conv.sharp = 1;
-			if (format[env->i + var] == '+')
-				env->conv.plus = 1;
-			var++;
-		}
+	{
+		if (format[env->i + var] == ' ')
+			env->conv.space = 1;
+		if (format[env->i + var] == '#')
+			env->conv.sharp = 1;
+		if (format[env->i + var] == '+')
+			env->conv.plus = 1;
+		if (format[env->i + var] == '-')
+			env->conv.neg = 1;
+		if (format[env->i + var] == '0' &&
+				!(format[env->i + var - 1] <= '9' &&
+					format[env->i + var - 1] >= '1') &&
+				format[env->i + var - 1] != '.')
+			env->conv.zero = 1;
+		var++;
+	}
 }

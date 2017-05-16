@@ -6,9 +6,10 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 11:43:48 by drecours          #+#    #+#             */
-/*   Updated: 2017/04/29 12:50:14 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:58:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libftprintf.h"
 
 int		ft_wcsize(wchar_t c)

@@ -6,13 +6,13 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/13 11:26:29 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/14 17:36:00 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:52:40 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
 
-void		ft_putinit(t_env *env, char *addit, int size)
+void				ft_putinit(t_env *env, char *addit, int size)
 {
 	int		i;
 	int		j;
@@ -32,7 +32,7 @@ void		ft_putinit(t_env *env, char *addit, int size)
 	}
 }
 
-static void		ft_init_env(t_env *env)
+static void			ft_init_env(t_env *env)
 {
 	env->indexstr = 0;
 	env->indexbuff = 0;
@@ -57,15 +57,13 @@ static void		ft_init_env(t_env *env)
 	env->z = 0;
 }
 
-
-static void		destroy_env(t_env *env)
+static void			destroy_env(t_env *env)
 {
 	if (env->weight != -1)
 		env->weight += env->indexbuff;
 }
 
-
-static void		cleanit(t_env *env)
+static void			cleanit(t_env *env)
 {
 	env->conv.conversion = -1;
 	env->conv.champ = 0;
@@ -86,11 +84,11 @@ static void		cleanit(t_env *env)
 	env->hh = 0;
 }
 
-int				ft_printf(const char *format, ...)
+int					ft_printf(const char *format, ...)
 {
 	t_env		env;
 	va_list		args;
-	const tconv tabconv[] = {convgs, convs, convp, convgd, convd, convi, convgo,
+	const t_con tabconv[] = {convgs, convs, convp, convgd, convd, convi, convgo,
 		convo, convgu, convu, convgx, convx, convgc, convc, convpercent};
 
 	ft_init_env(&env);

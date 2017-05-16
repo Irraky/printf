@@ -6,18 +6,17 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 04:15:21 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/02 15:54:10 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 16:59:20 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libftprintf.h"
 
 void	ft_itoa(long long n, char *nb)
 {
 	int		i;
 
-	if (n == -9223372036854775807 -1)
+	if (n == -9223372036854775807 - 1)
 		ft_strcpy(nb, "-9223372036854775808");
 	i = ft_ilen(n);
 	if (n < 0 && n != -9223372036854775807 - 1)
