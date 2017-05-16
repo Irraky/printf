@@ -6,41 +6,38 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 17:06:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/15 17:44:04 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 12:44:27 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libftprintf.h"
-#include <string.h>
-#include <stdio.h>
 
 
 void			trick(wchar_t args, t_env *env)
 {
 	ft_bzero(&env->wchar, 5);
-	if ((unsigned)args < 0x80)
+	if ((unsigned)args < 0x80 || (MB_CUR_MAX == 1 && (unsigned)args <= 255))
 		env->wchar[0] = args;
-	else if ((unsigned)args <= 0x800)
+	else if ((unsigned)args <= 0x800 && MB_CUR_MAX != 1)
 	{
 		env->wchar[0] = ((args >> 6) + 0xC0);
 		env->wchar[1] = ((args & 0x3F) + 0x80);
 	}
-	else if ((unsigned)args <= 0xd800 || (unsigned)args - 0xE000 < 0x2000)
+	else if (((unsigned)args <= 0xd800 || (unsigned)args - 0xE000 < 0x2000)
+			&& MB_CUR_MAX != 1)
 	{
 		env->wchar[0] = ((args >> 12) + 0xE0);
 		env->wchar[1] = (((args >> 6) & 0x3F) + 0x80);
 		env->wchar[2] = ((args & 0x3F) + 0x80);
 	}
-	else if ((unsigned)args - 0x10000 < 0x100000)
+	else if ((unsigned)args - 0x10000 < 0x100000 && MB_CUR_MAX != 1)
 	{
 		env->wchar[0] = ((args >> 18) + 0xF0);
 		env->wchar[1] = (((args >> 12) & 0x3F) + 0x80);
 		env->wchar[2] = (((args >> 6) & 0x3F) + 0x80);
 		env->wchar[3] = ((args & 0x3F) + 0x80);
 	}
-	ft_putinit(env, env->wchar, -1);
-	if (!env->wchar[0])
-		ft_putinit(env, "\0", 1);
+	ft_putinit(env, env->wchar, (!env->wchar[0]) ? 1 : -1);
 	env->weight = (MB_CUR_MAX == 1 && args > 255) ? -1 : env->weight;
 }
 
