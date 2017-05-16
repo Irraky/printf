@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/01 14:15:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/16 12:21:04 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 14:53:02 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void		convo(va_list args, t_env *env)
 
 	if (env->conv.conversion == 7)
 		convitoabase(args, env, 8);
+	if (env->conv.nb[0] == '0' && env->conv.precision == 0 && env->conv.champ > -1)
+		env->conv.champ++;
 	i = ft_strlen(env->conv.nb) + env->conv.sharp;
 	if (env->conv.nb[0] == '0')
 		i++;
