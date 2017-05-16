@@ -6,7 +6,7 @@
 /*   By: drecours <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/19 17:06:36 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/16 12:44:27 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/16 14:47:25 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,30 @@ void			trick(wchar_t args, t_env *env)
 
 void			convc(va_list arg, t_env *env)
 {
-	convgc(arg, env);
+	int			i;
+	char		c;
+	char		s[1];
+
+	i = -1;
+	if (env->l == 1)
+		convgc(arg, env);
+	else
+	{
+		c = (char)va_arg(arg, char *);
+		s[0] = c;
+		if (env->conv.neg == 1)
+		{
+			ft_putinit(env, (!c) ? "\0" : s, 1);
+			while (++i < env->conv.champ -1)
+				ft_putinit(env, " ", 1);
+		}
+		else
+		{
+			while (++i < env->conv.champ-1)
+				ft_putinit(env, (env->conv.zero == 1)? "0" : " ", -1);
+			ft_putinit(env, (!c) ? "\0" : s, 1);
+		}
+	}
 }
 
 void			convs(va_list args, t_env *env)
