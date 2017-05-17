@@ -6,7 +6,7 @@
 /*   By: drecours <drecours@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/25 11:54:51 by drecours          #+#    #+#             */
-/*   Updated: 2017/05/11 16:33:46 by drecours         ###   ########.fr       */
+/*   Updated: 2017/05/17 12:00:55 by drecours         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void		putnwchar(const wchar_t *str, t_env *env)
 {
-	int		printed;
-	int		i;
+	int					printed;
+	int					i;
 
 	printed = 0;
 	i = 0;
@@ -29,8 +29,8 @@ static void		putnwchar(const wchar_t *str, t_env *env)
 
 static int		lgs(t_env *env, const wchar_t *str)
 {
-	int		i;
-	int		size;
+	int					i;
+	int					size;
 
 	i = 0;
 	size = 0;
@@ -70,9 +70,9 @@ void			convgs(va_list args, t_env *env)
 
 void			convgc(va_list args, t_env *env)
 {
-	int		i;
-	const wchar_t	 s = va_arg(args, wchar_t);
-	const int	j = ft_wcsize(s);
+	int					i;
+	const wchar_t		s = va_arg(args, wchar_t);
+	const int			j = ft_wcsize(s);
 
 	i = -1;
 	if (env->conv.neg == 1)
